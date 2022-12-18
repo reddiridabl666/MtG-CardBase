@@ -6,3 +6,9 @@
 .bold {
     font-weight: bold;
 }
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

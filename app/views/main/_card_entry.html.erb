@@ -1,0 +1,22 @@
+<div class="row outline mt-1">
+  <div class="list-group list-group-horizontal p-0">
+    <div class="col-2 list-group-item centered">
+      <span><%= instance.card.name %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= instance.card.type %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= render partial: 'manacost', locals: { card: instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE_BIG } %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= instance.card.stats %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= render partial: 'set_symbol', locals: { expansion: instance.expansion_symbol_common(2) } %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= instance.rarity.capitalize %></span>
+    </div>
+  </div>
+</div>

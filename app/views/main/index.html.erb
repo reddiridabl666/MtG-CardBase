@@ -1,26 +1,8 @@
-<div class="col-6 ms-5 mt-2">
-  <div class="row outline">
-    <div class="list-group list-group-horizontal p-0">
-      <div class="col-2 list-group-item">
-        <span>Name</span>
-      </div>
-      <div class="col-2 list-group-item">
-        <span>Type</span>
-      </div>
-      <div class="col-2 list-group-item">
-        <span>Cost</span>
-      </div>
-      <div class="col-2 list-group-item">
-        <span>P/T</span>
-      </div>
-      <div class="col-2 list-group-item">
-        <span>Expansion</span>
-      </div>
-      <div class="col-2 list-group-item">
-        <span>Rarity</span>
-      </div>
-    </div>
-  </div>
+<div class="col-10 ms-5 mt-2">
+  <%= render partial: "index_header" %>
+  <% @cards.each do |card| %>
+    <%= render partial: "card_entry", locals: { instance: card } %>
+  <% end %>
 </div>
 
 <%= render partial: "footer" %>
