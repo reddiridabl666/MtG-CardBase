@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Expansions</h1>
+
+<div id="expansions">
+  <% @expansions.each do |expansion| %>
+    <%= render expansion %>
+    <p>
+      <%= link_to "Show this expansion", expansion %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New expansion", new_expansion_path %>

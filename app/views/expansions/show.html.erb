@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @expansion %>
+
+<div>
+  <%= link_to "Edit this expansion", edit_expansion_path(@expansion) %> |
+  <%= link_to "Back to expansions", expansions_path %>
+
+  <%= button_to "Destroy this expansion", @expansion, method: :delete %>
+</div>

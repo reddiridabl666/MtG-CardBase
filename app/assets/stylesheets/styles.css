@@ -1,0 +1,8 @@
+.outline {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.bold {
+    font-weight: bold;
+}

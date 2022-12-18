@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :expansions
+  resources :card_instances
+  resources :cards
+  get 'main/add_card'
+  get 'main/create_deck'
+  get 'main/show_card'
+  get 'decks', to: "main#decks"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'logout', to: "session#logout"
+  get 'login', to: "session#login"
+  get 'signup', to: "users#new"
+
+  post 'authorize', to: "session#authorize"
+
+  resources :users
+  root "main#index"
 end

@@ -1,0 +1,33 @@
+<div id="<%= dom_id card_instance %>" class="row align-items-center">
+  <div class="col-2">
+    <% if card_instance.image.representable? %>
+      <%= image_tag card_instance.image.representation(resize_to_limit: [640, 480]) %>
+    <% else %>
+      <%= link_to rails_blob_path(card_instance.image) %>
+    <% end %>
+  </div>
+
+  <div class="col-4">
+    <div class="d-flex align-items-center">
+      <p class="me-3 bold fs-4"><%= card_instance.card.name %></p>
+      <p><%= replace_mtg_symbols(card_instance.card.manacost, ApplicationHelper::MTG_SYMBOL_SIZE_BIG).html_safe %></p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="me-3"><%=card_instance.card.legendarity%><%= card_instance.card.types.join %> - <%= card_instance.card.subtype %></p>
+      <% unless card_instance.card.power.nil? || card_instance.card.toughness.nil? %>
+        <p class="bold"><%= card_instance.card.power %> / <%= card_instance.card.toughness %></p>
+      <% end %>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="">
+        <%= process_text(card_instance.card.text) %>
+      </div>
+      <div class="font-italic"><%= card_instance.flavour_text %></div>
+    </div>
+    <div class="d-flex align-items-center mt-4">
+      <div class=""><%= card_instance.expansion.name %>
+        <i class="ms-2 <%= card_instance.expansion.symbol(card_instance.rarity, 2) %>"></i>
+      </div>
+    </div>
+  </div>
+</div>
