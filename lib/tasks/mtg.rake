@@ -9,16 +9,30 @@ namespace :mtg do
     expansion = Expansion.find_by(name: set['name'])
     expansion ||= Expansion.create(name: set['name'], card_num: set['baseSetSize'],
                                  release_date: set['releaseDate'], code: set['keyruneCode'])
+    return p expansion.errors unless expansion.valid?
+
     set['cards'].each do |card|
       base_card = Card.find_by(name: card['name'])
       base_card ||= Card.create(name: card['name'], power: card['power'], toughness: card['toughness'],
-                      text: card['text'], types: card['supertypes'], subtypes: card['subtypes'],
-                      mana_value: card['manaValue'], manacost: card['manaCost'],
-                      legendary: card['supertypes'].include?('Legendary'))
+                      text: card['text'], types: card['types'], subtypes: card['subtypes'],
+                      supertypes: card['supertypes'], mana_value: card['manaValue'], manacost: card['manaCost'])
 
-      if CardInstance.find_by(card_id: base_card.id, expansion_id: expansion.id).nil?
+      return p base_card.errors unless base_card.valid?
+
+      if CardInstance.find_by(uuid: card['uuid']).nil?
+        puts "Adding card: #{card['name']} with layout #{card['layout']} and side #{card['side']}"
+        if (card['layout'] == 'aftermath' || card['layout'] == 'split') &&
+            base_card.card_instances.where(expansion_id: expansion.id).any?
+          base_card.text += "\n#{Array.new(20, '_').join}\n#{card['text']}"
+          base_card.save
+          next
+        end
+
         card_instance = CardInstance.create(flavour_text: card['flavorText'], expansion_id: expansion.id,
-                            card_id: base_card.id, rarity: CardInstance.rarity_from_string(card['rarity']))
+                            card_id: base_card.id, rarity: CardInstance.rarity_from_string(card['rarity']),
+                            uuid: card['uuid'])
+
+        return p card_instance.errors unless card_instance.valid?
 
         image_url = "https://api.scryfall.com/cards/#{card['identifiers']['scryfallId']}?format=image"
         downloaded_image = URI.open(image_url)

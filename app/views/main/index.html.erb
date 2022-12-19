@@ -1,9 +1,14 @@
-<!--<div class="col-10 ms-5 mt-2">-->
-  <%= render partial: "index_header" %>
-<!--</div>-->
+<div class="cards-heading sticky-top mb-3">
+  <%= render partial: "card_header" %>
+</div>
 
-<% @cards.each do |card| %>
+<br>
+<br>
+
+<div class="mt-5 md-5 card-entries">
+  <% @cards.each do |card| %>
     <%= render partial: "card_entry", locals: { instance: card } %>
-<% end %>
+  <% end %>
+</div>
 
 <%= render partial: "footer" %>

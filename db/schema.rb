@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_043035) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_153226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,22 +49,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_043035) do
     t.integer "rarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uuid"
     t.index ["card_id"], name: "index_card_instances_on_card_id"
     t.index ["expansion_id"], name: "index_card_instances_on_expansion_id"
+    t.index ["uuid"], name: "index_card_instances_on_uuid", unique: true
   end
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
-    t.integer "power"
-    t.integer "toughness"
+    t.string "power", limit: 2
+    t.string "toughness", limit: 2
     t.text "text"
     t.string "subtypes", array: true
-    t.boolean "legendary", default: false
     t.string "manacost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "types", array: true
     t.integer "mana_value"
+    t.string "supertypes", array: true
     t.index ["name"], name: "index_cards_on_name", unique: true
   end
 

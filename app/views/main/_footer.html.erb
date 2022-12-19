@@ -1,5 +1,10 @@
-<footer class="footer fixed-bottom d-flex align-items-center justify-content-end">
-  <% if user_authenticated %>
-    <button class="btn btn-outline-primary">New Deck</button>
-  <% end %>
+<footer class="footer sticky-bottom row mt-3 d-flex align-items-center">
+  <div class="col-10 ms-5">
+    <%= paginate @cards %>
+  </div>
+  <div class="col-1 d-flex align-items-center">
+    <% if user_authenticated %>
+      <button class="btn btn-outline-secondary text-light">New Deck</button>
+    <% end %>
+  </div>
 </footer>

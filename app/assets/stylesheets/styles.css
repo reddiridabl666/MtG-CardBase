@@ -3,8 +3,18 @@
     border-radius: 5px;
 }
 
+.footer {
+    background-color: rgb(0, 0, 0);
+    height: 60px;
+    /*z-index: 1;*/
+}
+
 .bold {
     font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .centered {
@@ -16,4 +26,21 @@
 .entry-btn {
     background-color: white;
     border: none;
+}
+
+.cards-heading {
+    z-index: 1;
+    top: 100px;
+}
+
+.card-entries {
+    top: 60px;
+}
+
+.page {
+    color: white !important;
+}
+
+a {
+    text-decoration: none;
 }

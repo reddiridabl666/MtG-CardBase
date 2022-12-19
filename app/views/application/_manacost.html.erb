@@ -1,3 +1,7 @@
-<% get_mtg_symbols(card.manacost).each do |img| %>
-  <%= image_tag(img, size: size) %>
+<% if card.manacost.nil? %>
+  <span>-</span>
+<%  else  %>
+  <% get_mtg_symbols(card.manacost).each do |img| %>
+    <%=  image_tag(img, size: size)  %>
+  <% end %>
 <% end %>

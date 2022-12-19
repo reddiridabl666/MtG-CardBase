@@ -10,18 +10,20 @@
   <div class="col-4">
     <div class="d-flex align-items-center">
       <p class="me-3 bold fs-4"><%= card_instance.card.name %></p>
-      <p><%= render partial: 'manacost', locals: { card: card_instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE_BIG } %></p>
-    </div>
+      <% unless card_instance.card.manacost.nil? %>
+        <p><%= render partial: 'manacost', locals: { card: card_instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE_BIG } %></p>
+      <% end %>
+      </div>
     <div class="me-3">
       <span><%= card_instance.card.type %></span>
       <i class="ms-5 <%= card_instance.expansion_symbol(2) %>"></i>
       <span class="ms-2"><%= card_instance.expansion.name %></span>
     </div>
-    <div class="d-flex align-items-center">
+    <div class="">
       <div class="">
         <%= process_text(card_instance.card.text) %>
       </div>
-      <div class="font-italic"><%= card_instance.flavour_text %></div>
+      <div class="italic mt-2"><%= card_instance.flavour_text %></div>
     </div>
     <div class="d-flex align-items-center mt-4">
       <% if card_instance.card.has_stats %>

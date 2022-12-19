@@ -4,8 +4,8 @@ class CardInstance < ApplicationRecord
   has_one_attached :image
 
   enum rarity: { common: 0, uncommon: 1, rare: 2, mythic: 3 }
-  validates :card_id, :expansion_id, :rarity, presence: true
-  validates :card_id, uniqueness: { scope: :expansion_id }
+  validates :card_id, :expansion_id, :rarity, :uuid, presence: true
+  validates :uuid, uniqueness: true
 
   def expansion_symbol(size=1)
     expansion.symbol(rarity, size)
