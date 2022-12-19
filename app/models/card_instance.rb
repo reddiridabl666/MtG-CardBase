@@ -4,13 +4,24 @@ class CardInstance < ApplicationRecord
   has_one_attached :image
 
   enum rarity: { common: 0, uncommon: 1, rare: 2, mythic: 3 }
-
-  def type
-    "#{card.type}#{card.subtype.present? ? "- #{card.subtype}" : ''}"
-  end
+  validates :card_id, :expansion_id, :rarity, presence: true
+  validates :card_id, uniqueness: { scope: :expansion_id }
 
   def expansion_symbol(size=1)
     expansion.symbol(rarity, size)
+  end
+
+  def self.rarity_from_string(str)
+    case str
+    when 'uncommon'
+      1
+    when 'rare'
+      2
+    when 'mythic'
+      3
+    else
+      0
+    end
   end
 
   def expansion_symbol_common(size=1)

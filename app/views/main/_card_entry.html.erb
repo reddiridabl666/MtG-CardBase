@@ -1,5 +1,5 @@
-<div class="row outline mt-1">
-  <div class="list-group list-group-horizontal p-0">
+<div class="row mt-1 card-entry ms-3">
+  <div class="col-10 row list-group list-group-horizontal p-0 outline">
     <div class="col-2 list-group-item centered">
       <span><%= instance.card.name %></span>
     </div>
@@ -19,4 +19,24 @@
       <span><%= instance.rarity.capitalize %></span>
     </div>
   </div>
+
+  <% if user_authenticated && user_is_deckbuilding %>
+    <div class="col-2 row list-group list-group-horizontal p-0 outline">
+      <div class="col-4 list-group-item centered">
+        <button class="entry-btn"><%= image_tag 'dropdown.png', size: '40x20' %></button>
+      </div>
+      <div class="col-4 list-group-item centered p-0">
+        <button class="entry-btn"><%= image_tag 'plus.svg', size: '30x30' %></button>
+      </div>
+      <div class="col-4 list-group-item centered">
+        <button class="entry-btn"><%= image_tag 'minus.svg', size: '30x30' %></button>
+      </div>
+    </div>
+  <% else %>
+    <div class="col-1 row list-group list-group-horizontal outline p-0">
+      <div class="list-group-item centered col">
+        <button class="entry-btn"><%= image_tag 'dropdown.png', size: '40x20' %></button>
+      </div>
+    </div>
+  <% end %>
 </div>

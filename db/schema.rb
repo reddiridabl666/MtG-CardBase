@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_041911) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_043035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_041911) do
     t.integer "power"
     t.integer "toughness"
     t.text "text"
-    t.string "subtype"
+    t.string "subtypes", array: true
     t.boolean "legendary", default: false
     t.string "manacost"
     t.datetime "created_at", null: false

@@ -1,7 +1,7 @@
 <div id="<%= dom_id card_instance %>" class="row align-items-center">
   <div class="col-2">
     <% if card_instance.image.representable? %>
-      <%= image_tag card_instance.image.representation(resize_to_limit: [640, 480]) %>
+      <%= image_tag card_instance.image.representation(resize_to_limit: [284, 400]) %>
     <% else %>
       <%= link_to rails_blob_path(card_instance.image) %>
     <% end %>
@@ -24,7 +24,7 @@
       <div class="font-italic"><%= card_instance.flavour_text %></div>
     </div>
     <div class="d-flex align-items-center mt-4">
-      <% unless card_instance.card.has_stats %>
+      <% if card_instance.card.has_stats %>
         <p class="bold"><%= card_instance.card.stats %></p>
       <% end %>
     </div>

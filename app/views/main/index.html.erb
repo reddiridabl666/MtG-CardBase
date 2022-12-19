@@ -1,8 +1,9 @@
-<div class="col-10 ms-5 mt-2">
+<!--<div class="col-10 ms-5 mt-2">-->
   <%= render partial: "index_header" %>
-  <% @cards.each do |card| %>
+<!--</div>-->
+
+<% @cards.each do |card| %>
     <%= render partial: "card_entry", locals: { instance: card } %>
-  <% end %>
-</div>
+<% end %>
 
 <%= render partial: "footer" %>
