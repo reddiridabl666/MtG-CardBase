@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   post 'authorize', to: "session#authorize"
 
+  get 'set/:code', to: "main#by_set"
+
   resources :users
   root "main#index"
 end

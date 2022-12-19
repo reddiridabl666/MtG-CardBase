@@ -1,14 +1,28 @@
-<div class="cards-heading sticky-top mb-3">
-  <%= render partial: "card_header" %>
+<div class="col-11">
+  <div class="cards-heading mb-5 w-100">
+    <%= render partial: "card_header" %>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="mt-5 md-5 card-entries w-100">
+    <% @cards.each do |card| %>
+      <%= render partial: "card_entry", locals: { instance: card } %>
+    <% end %>
+  </div>
 </div>
 
-<br>
-<br>
 
-<div class="mt-5 md-5 card-entries">
-  <% @cards.each do |card| %>
-    <%= render partial: "card_entry", locals: { instance: card } %>
-  <% end %>
+<div class="col-1">
+  <div class="d-flex">
+    <button class="btn btn-secondary">Collapse All</button>
+    <button class="btn btn-secondary">Expand All</button>
+  </div>
 </div>
 
 <%= render partial: "footer" %>
+
+<%= javascript_include_tag "show-extended" %>

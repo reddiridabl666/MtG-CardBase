@@ -1,5 +1,5 @@
 <div class="row mt-1 card-entry ms-4">
-  <div class="col-8 row list-group list-group-horizontal p-0 outline">
+  <div id="base-<%= dom_id instance %>" class="col-8 entry-base row list-group list-group-horizontal p-0 outline">
     <div class="col-3 list-group-item centered">
       <span><%= instance.card.name %></span>
     </div>
@@ -13,9 +13,9 @@
       <span><%= instance.card.stats %></span>
     </div>
     <div class="col-1 list-group-item centered">
-      <span><%= render partial: 'set_symbol', locals: { expansion: instance.expansion_symbol_common(2) } %></span>
+      <span><%= render partial: 'set_symbol', locals: { card: instance } %></span>
     </div>
-    <div class="col-1 list-group-item centered p-0">
+    <div class="col-1 list-group-item centered small">
       <span><%= instance.rarity.capitalize %></span>
     </div>
   </div>
@@ -23,7 +23,7 @@
   <% if user_authenticated && user_is_deckbuilding %>
     <div class="col-1 row list-group list-group-horizontal p-0 outline ms-4">
       <div class="col-4 list-group-item centered">
-        <button class="entry-btn"><%= image_tag 'dropdown.png', size: '36x18' %></button>
+        <button id="btn-<%= dom_id instance %>" class="entry-btn dropdown-btn"><%= image_tag 'dropdown.png', size: '32x16' %></button>
       </div>
       <div class="col-4 list-group-item centered p-0">
         <button class="entry-btn"><%= image_tag 'plus.svg', size: '30x30' %></button>
@@ -33,10 +33,14 @@
       </div>
     </div>
   <% else %>
-    <div class="col-1 row list-group list-group-horizontal outline p-0 ms-4">
-      <div class="list-group-item centered col">
-        <button class="entry-btn"><%= image_tag 'dropdown.png', size: '40x20' %></button>
+    <div class="col-1 list-group list-group-horizontal p-0 ms-4">
+      <div class="list-group-item centered outline">
+        <button id="btn-<%= dom_id instance %>" class="entry-btn dropdown-btn"><%= image_tag 'dropdown.png', size: '32x16' %></button>
       </div>
     </div>
   <% end %>
+
+  <div id="extended-<%= dom_id instance %>" class="entry-extended" style="{display: none;}">
+    <%= render partial: 'card_extended', locals: { card_instance: instance } %>
+  </div>
 </div>

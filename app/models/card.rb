@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
   has_many :card_instances
 
-  MANA_SYMBOL = /\{((1?\d|20)|(2|[RG]\/)?W|(2|[WG]\/)?U|(2|[UW]\/)?B|(2|[UB]\/)?R|(2|[RB]\/)?G|C|X|[CWUBRG]P)}/.freeze
+  MANA_SYMBOL = /\{((1?\d|20)|(2|[RG]\/)?W|(2|[WG]\/)?U|(2|[UW]\/)?B|(2|[UB]\/)?R|(2|[RB]\/)?G|C|X|[CWUBRG]\/P)}/.freeze
   MTG_SYMBOL = /(#{MANA_SYMBOL}|{[TQE]})/.freeze
 
   validates :name, uniqueness: true

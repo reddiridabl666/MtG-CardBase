@@ -1,0 +1,16 @@
+<div id="<%= dom_id card_instance %>" class="row my-2 align-items-center">
+  <div class="col-2">
+    <% if card_instance.image.representable? %>
+      <%= image_tag card_instance.image.representation(resize_to_limit: [284, 400]) %>
+    <% else %>
+      <%= link_to rails_blob_path(card_instance.image) %>
+    <% end %>
+  </div>
+
+  <div class="col-4">
+    <div class="">
+      <%= process_text(card_instance.card.text) %>
+    </div>
+    <div class="italic mt-2"><%= card_instance.flavour_text %></div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 class CardInstance < ApplicationRecord
+  paginates_per 20
+
   belongs_to :expansion
   belongs_to :card
   has_one_attached :image
