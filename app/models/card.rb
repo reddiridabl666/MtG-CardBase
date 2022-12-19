@@ -4,6 +4,8 @@ class Card < ApplicationRecord
   MANA_SYMBOL = /\{((1?\d|20)|[2RG]?W|[2WG]?U|[2UW]?B|[2UB]?R|[2RB]?G|C|X|[CWUBRG]P)}/.freeze
   MTG_SYMBOL = /(#{MANA_SYMBOL}|T|Q|E)/.freeze
 
+  validates :name, :power, :toughness, :text, :types, :subtype, :mana_value, presence: true
+
   validates :manacost, format: {
     with: /\A(#{MANA_SYMBOL})+\z/
   }
