@@ -9,4 +9,8 @@ class Expansion < ApplicationRecord
   def symbol(rarity, size=1)
     "ss ss-#{code.downcase} ss-#{rarity}#{size == 1 ? "" : " ss-#{size}x"}"
   end
+
+  def to_s
+    name
+  end
 end

@@ -13,14 +13,25 @@ namespace :mtg do
 
     set['cards'].each do |card|
       base_card = Card.find_by(name: card['name'])
-      base_card ||= Card.create(name: card['name'], power: card['power'], toughness: card['toughness'],
-                      text: card['text'], types: card['types'], subtypes: card['subtypes'],
-                      supertypes: card['supertypes'], mana_value: card['manaValue'], manacost: card['manaCost'])
+      if base_card.nil?
+        base_card = Card.create(name: card['name'], power: card['power'], toughness: card['toughness'],
+                    text: card['text'], types: card['types'], subtypes: card['subtypes'],
+                    supertypes: card['supertypes'], mana_value: card['manaValue'], manacost: card['manaCost'])
+        return p base_card.errors unless base_card.valid?
 
-      return p base_card.errors unless base_card.valid?
+        type = nil
+        type = CardType.find_or_create_by(value: card['supertypes'], type_scope: :super) unless card['supertypes'].blank?
+        return p type.errors unless type.blank? || type.valid?
+
+        type = CardType.find_or_create_by(value: card['subtypes'], type_scope: :sub) unless card['subtypes'].blank?
+        return p type.errors unless type.blank? || type.valid?
+
+        type = CardType.find_or_create_by(value: card['types'], type_scope: :normal) unless card['types'].blank?
+        return p type.errors unless type.blank? || type.valid?
+      end
 
       if CardInstance.find_by(uuid: card['uuid']).nil?
-        puts "Adding card: #{card['name']} with layout #{card['layout']} and side #{card['side']}"
+        puts "Adding card: #{card['name']}"
         if (card['layout'] == 'aftermath' || card['layout'] == 'split') &&
             base_card.card_instances.where(expansion_id: expansion.id).any?
           base_card.text += "\n#{Array.new(20, '_').join}\n#{card['text']}"

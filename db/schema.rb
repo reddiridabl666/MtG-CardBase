@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_153226) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_153226) do
     t.index ["card_id"], name: "index_card_instances_on_card_id"
     t.index ["expansion_id"], name: "index_card_instances_on_expansion_id"
     t.index ["uuid"], name: "index_card_instances_on_uuid", unique: true
+  end
+
+  create_table "card_types", force: :cascade do |t|
+    t.string "value", array: true
+    t.integer "type_scope"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["value"], name: "index_card_types_on_value", unique: true
   end
 
   create_table "cards", force: :cascade do |t|

@@ -37,7 +37,7 @@
     <div class="row gx-4 col-5 form-group align-items-center">
       <%= form.label :set, 'Expansion', class: 'col-6' %>
       <div class="col-6">
-        <%= form.select :type, %w[- AKH NPH RNA], class: "ms-2 form-select" %>
+        <%= form.select :type, Expansion.all.to_a, class: "ms-2 form-select" %>
       </div>
     </div>
 
@@ -79,21 +79,21 @@
       <div class="row form-group">
         <%= form.label :type, 'Type', class: 'col-4' %>
         <div class="col-8">
-          <%= form.select :type, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+          <%= form.select :type, CardType.where(type_scope: :normal).to_a, class: "ms-1 form-select" %>
         </div>
       </div>
 
       <div class="row form-group mt-2">
         <%= form.label :subtype, 'Subtype', class: 'col-4' %>
         <div class="col-8">
-          <%= form.select :subtype, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+          <%= form.select :subtype, CardType.where(type_scope: :sub).to_a, class: "ms-1 form-select" %>
         </div>
       </div>
 
       <div class="row form-group mt-2">
         <%= form.label :supertype, 'Supertype', class: 'col-4' %>
         <div class="col-8">
-          <%= form.select :supertype, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+          <%= form.select :supertype, CardType.where(type_scope: :super).to_a, class: "ms-1 form-select" %>
         </div>
       </div>
     </div>
