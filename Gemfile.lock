@@ -245,6 +245,7 @@ DEPENDENCIES
   jbuilder
   kaminari
   pg (~> 1.1)
+  popper_js
   puma (~> 5.0)
   rails (~> 7.0.4)
   rails-controller-testing

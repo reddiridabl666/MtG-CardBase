@@ -1,0 +1,37 @@
+<%= form_with url: root_path, class: 'menu' do |form| %>
+  <div class="row form-group">
+    <%= form.label :name, 'Name', class: "col-4"%>
+    <div class="col-8">
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row form-group">
+    <%= form.label :rules, 'Rules Text', class: "col-4"%>
+    <div class="col-8">
+      <%= form.text_field :rules, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row form-group">
+    <%= form.label :flavour, 'Flavour Text', class: "col-4"%>
+    <div class="col-8">
+      <%= form.text_field :flavour, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="dropdown col-4">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Expansions
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdown_menu">
+        <%= form.label :set_AKH, "Amonkhet" %>
+        <%= form.check_box :set_AKH, class: "dropdown-item" %>
+
+        <%= form.label :set_NPH, "New Phyrexia" %>
+        <%= form.check_box :set_NPH, class: "dropdown-item" %>
+
+        <%= form.label :set_RNA, "Ravnica Allegiance" %>
+        <%= form.check_box :set_RNA, class: "dropdown-item" %>
+      </div>
+    </div>
+  </div>
+<% end %>

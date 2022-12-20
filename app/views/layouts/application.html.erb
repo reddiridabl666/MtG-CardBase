@@ -9,27 +9,27 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "styles", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag t('http_cdn_jsdelivr_net_npm_keyrune_latest_css_keyru') %>
-
+    <%= javascript_importmap_tags %>
   </head>
 
   <body class="container-fluid d-flex flex-column">
-    <header class="navbar navbar-expand-md navbar-dark fixed-top bg-primary row md-5">
-      <h1 class="col-6 mt-3 text-light">MtG Cardbase </h1>
+    <header class="navbar navbar-expand-md navbar-dark fixed-top bg-primary row md-5 w-100">
+      <h1 class="col-6 ms-3 mt-3 text-light">MtG Cardbase </h1>
       <div class="col-4 d-flex align-items-center justify-content-center">
-        <a href="<%= root_path %>" class="text-light h5 me-3 btn btn-outline-secondary">Cards</a>
-        <a href="<%= decks_path %>" class="text-light h5 btn btn-outline-secondary">Decks</a>
+        <a href="<%= root_path %>" class="text-light h5 me-3 btn btn-outline-secondary menu-btn">Cards</a>
+        <a href="<%= decks_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Decks</a>
       </div>
       <div class="col-2 d-flex align-items-center justify-content-center">
         <% if user_authenticated %>
-          <a href="<%= logout_path %>" class="text-light h5 btn btn-outline-secondary">Sign Out</a>
+          <a href="<%= logout_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Sign Out</a>
         <% else %>
-          <a href="<%= login_path %>" class="text-light h5 me-3 btn btn-outline-secondary">Log In</a>
-          <a href="<%= signup_path %>" class="text-light h5 btn btn-outline-secondary">Sign Up</a>
+          <a href="<%= login_path %>" class="text-light h5 me-3 btn btn-outline-secondary menu-btn">Log In</a>
+          <a href="<%= signup_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Sign Up</a>
         <% end %>
       </div>
     </header>
 
-    <main class="row w-100">
+    <main class="row gx-0">
       <%= yield %>
     </main>
   </body>

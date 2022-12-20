@@ -1,26 +1,19 @@
-<div class="col-11">
-  <div class="cards-heading mb-5 w-100">
+<div class="col-8 mb-5">
+  <div class="cards-heading mb-5 ms-4 w-100">
     <%= render partial: "card_header" %>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <div class="mt-5 md-5 card-entries w-100">
+  <div class="mt-5 card-entries ms-4 w-100">
     <% @cards.each do |card| %>
       <%= render partial: "card_entry", locals: { instance: card } %>
     <% end %>
   </div>
 </div>
 
+<div class="col-1"></div>
 
-<div class="col-1">
-  <div class="d-flex">
-    <button class="btn btn-secondary">Collapse All</button>
-    <button class="btn btn-secondary">Expand All</button>
-  </div>
+<div class="col-3 mt-5 position-sticky">
+  <%= render partial: 'menu' %>
 </div>
 
 <%= render partial: "footer" %>

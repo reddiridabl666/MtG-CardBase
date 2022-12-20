@@ -1,5 +1,5 @@
-<div class="row mt-1 card-entry ms-4">
-  <div id="base-<%= dom_id instance %>" class="col-8 entry-base row list-group list-group-horizontal p-0 outline">
+<div class="row mt-1 card-entry">
+  <div id="base-<%= dom_id instance %>" class="entry-base col-10 list-group list-group-horizontal p-0 outline">
     <div class="col-3 list-group-item centered">
       <span><%= instance.card.name %></span>
     </div>
@@ -21,8 +21,8 @@
   </div>
 
   <% if user_authenticated && user_is_deckbuilding %>
-    <div class="col-1 row list-group list-group-horizontal p-0 outline ms-4">
-      <div class="col-4 list-group-item centered">
+    <div class="col-2 row list-group list-group-horizontal p-0 outline ms-2">
+      <div class="col-4 list-group-item p-1 centered">
         <button id="btn-<%= dom_id instance %>" class="entry-btn dropdown-btn"><%= image_tag 'dropdown.png', size: '32x16' %></button>
       </div>
       <div class="col-4 list-group-item centered p-0">
@@ -40,7 +40,7 @@
     </div>
   <% end %>
 
-  <div id="extended-<%= dom_id instance %>" class="entry-extended" style="{display: none;}">
+  <div id="extended-<%= dom_id instance %>" class="entry-extended">
     <%= render partial: 'card_extended', locals: { card_instance: instance } %>
   </div>
 </div>

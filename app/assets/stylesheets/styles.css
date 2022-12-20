@@ -30,12 +30,8 @@
 
 .cards-heading {
     z-index: 1;
-    top: 100px;
     position: relative;
-}
-
-.card-entries {
-    top: 60px;
+    top: 40px;
 }
 
 .page {
@@ -47,9 +43,44 @@ a {
 }
 
 .entry-extended {
-    display: none;
+    transition: opacity 1.3s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .hover-gray:hover {
     background-color: #e1dddd;
+}
+
+.menu-btn {
+    font-size: larger;
+}
+
+body {
+    padding-bottom: 50px;
+    padding-top: 60px;
+}
+
+.entry-extended {
+    /*visibility: hidden;*/
+    transition: opacity 0.5s;
+}
+
+.dropdown-btn {
+    transition: transform 0.5s;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.active {
+    opacity: 1;
+    height: auto;
+}
+
+.menu {
+    position: fixed;
+    top: 100px;
 }
