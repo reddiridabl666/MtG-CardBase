@@ -1,37 +1,126 @@
-<%= form_with url: root_path, class: 'menu' do |form| %>
+<%= form_with url: root_path, method: :get, class: 'menu mt-5 position-sticky' do |form| %>
   <div class="row form-group">
-    <%= form.label :name, 'Name', class: "col-4"%>
-    <div class="col-8">
+    <%= form.label :name, 'Name', class: "col-3"%>
+    <div class="col-9">
       <%= form.text_field :name, class: "form-control" %>
     </div>
   </div>
-  <div class="row form-group">
-    <%= form.label :rules, 'Rules Text', class: "col-4"%>
-    <div class="col-8">
+  <div class="row mt-2 form-group">
+    <%= form.label :rules, 'Rules Text', class: "col-3"%>
+    <div class="col-9">
       <%= form.text_field :rules, class: "form-control" %>
     </div>
   </div>
-  <div class="row form-group">
-    <%= form.label :flavour, 'Flavour Text', class: "col-4"%>
-    <div class="col-8">
+  <div class="row mt-2 form-group">
+    <%= form.label :flavour, 'Flavour Text', class: "col-3"%>
+    <div class="col-9">
       <%= form.text_field :flavour, class: "form-control" %>
     </div>
   </div>
-  <div class="form-group row">
-    <div class="dropdown col-4">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Expansions
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdown_menu">
-        <%= form.label :set_AKH, "Amonkhet" %>
-        <%= form.check_box :set_AKH, class: "dropdown-item" %>
+  <div class="row mt-2 d-flex align-items-center">
+<!--    <div class="dropdown col-4">-->
+<!--      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--        Expansions-->
+<!--      </button>-->
+<!--      <div class="dropdown-menu" aria-labelledby="dropdown_menu">-->
+        <%#= form.label :set_AKH, "Amonkhet" %>
+        <%#= form.check_box :set_AKH, class: "dropdown-item" %>
 
-        <%= form.label :set_NPH, "New Phyrexia" %>
-        <%= form.check_box :set_NPH, class: "dropdown-item" %>
+        <%#= form.label :set_NPH, "New Phyrexia" %>
+        <%#= form.check_box :set_NPH, class: "dropdown-item" %>
 
-        <%= form.label :set_RNA, "Ravnica Allegiance" %>
-        <%= form.check_box :set_RNA, class: "dropdown-item" %>
+        <%#= form.label :set_RNA, "Ravnica Allegiance" %>
+        <%#= form.check_box :set_RNA, class: "dropdown-item" %>
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="row gx-4 col-5 form-group align-items-center">
+      <%= form.label :set, 'Expansion', class: 'col-6' %>
+      <div class="col-6">
+        <%= form.select :type, %w[- AKH NPH RNA], class: "ms-2 form-select" %>
       </div>
     </div>
+
+    <div class="form-group col-7 row mt-2">
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_w, image_tag("symbols/w.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_w, class: "ms-1 checkbox" %>
+      </div>
+
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_b, image_tag("symbols/b.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_b, class: "ms-1 checkbox" %>
+      </div>
+
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_u, image_tag("symbols/u.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_u, class: "ms-1 checkbox" %>
+      </div>
+
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_r, image_tag("symbols/r.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_r, class: "ms-1 checkbox" %>
+      </div>
+
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_g, image_tag("symbols/g.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_g, class: "ms-1 checkbox" %>
+      </div>
+
+      <div class="d-flex align-items-center col-2">
+        <%= form.label :color_c, image_tag("symbols/c.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
+        <%= form.check_box :color_c, class: "ms-1 checkbox" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-6">
+      <div class="row form-group">
+        <%= form.label :type, 'Type', class: 'col-4' %>
+        <div class="col-8">
+          <%= form.select :type, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+        </div>
+      </div>
+
+      <div class="row form-group mt-2">
+        <%= form.label :subtype, 'Subtype', class: 'col-4' %>
+        <div class="col-8">
+          <%= form.select :subtype, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+        </div>
+      </div>
+
+      <div class="row form-group mt-2">
+        <%= form.label :supertype, 'Supertype', class: 'col-4' %>
+        <div class="col-8">
+          <%= form.select :supertype, %w[- Creature Instant Sorcery Land], class: "ms-1 form-select" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row form-group">
+        <%= form.number_field :cost_ge, class: 'col-2 p-0 ps-1' %>
+        <span class="text-primary col-7 pe-0 text-center"><= Mana value <=</span>
+        <%= form.number_field :cost_le, class: 'col-2 p-0 ps-1 ms-1'  %>
+      </div>
+
+      <div class="row form-group mt-2">
+        <%= form.number_field :power_ge, class: 'col-2 p-0 ps-1' %>
+        <span class="text-primary col-7 text-center"><= Power <=</span>
+        <%= form.number_field :power_le, class: 'col-2 p-0 ps-1 ms-1'  %>
+      </div>
+
+      <div class="row form-group mt-2">
+        <%= form.number_field :toughness_ge, class: 'col-2 p-0 ps-1' %>
+        <span class="text-primary col-7 pe-0 text-center"><= Toughness <=</span>
+        <%= form.number_field :toughness_le, class: 'col-2 p-0 ps-1 ms-1'  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-3"></div>
+    <%= form.submit "Search", class: "btn btn-secondary col-6" %>
+    <div class="col-3"></div>
   </div>
 <% end %>

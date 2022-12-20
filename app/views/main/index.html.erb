@@ -1,4 +1,4 @@
-<div class="col-8 mb-5">
+<div class="col-8 mb-5 me-0 overflow-clip">
   <div class="cards-heading mb-5 ms-4 w-100">
     <%= render partial: "card_header" %>
   </div>
@@ -8,14 +8,15 @@
       <%= render partial: "card_entry", locals: { instance: card } %>
     <% end %>
   </div>
-</div>
+  </div>
 
-<div class="col-1"></div>
+  <div class="col-1 mx-0"></div>
 
-<div class="col-3 mt-5 position-sticky">
+<div class="col-3 ms-0">
   <%= render partial: 'menu' %>
 </div>
 
-<%= render partial: "footer" %>
+  <%= render partial: "footer" %>
 
 <%= javascript_include_tag "show-extended" %>
+
