@@ -81,6 +81,5 @@ body {
 }
 
 .menu {
-    position: fixed;
-    top: 100px;
+    top: 50px;
 }

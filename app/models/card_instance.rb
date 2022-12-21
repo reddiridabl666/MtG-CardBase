@@ -9,6 +9,8 @@ class CardInstance < ApplicationRecord
   validates :card_id, :expansion_id, :rarity, :uuid, presence: true
   validates :uuid, uniqueness: true
 
+  # default_scope { order(card: :asc) }
+
   def expansion_symbol(size=1)
     expansion.symbol(rarity, size)
   end
@@ -28,5 +30,18 @@ class CardInstance < ApplicationRecord
 
   def expansion_symbol_common(size=1)
     expansion.symbol('common', size)
+  end
+
+  def self.filter_by_expansion(cards, code)
+    cards = cards.where(expansion_id: Expansion.find_by_code(code)) if code.present?
+
+    cards
+  end
+
+  def self.filtered(params)
+    cards = Card.filtered(params)
+    instances = CardInstance.where(card_id: cards)
+
+    instances = self.filter_by_expansion(instances, params[:set])
   end
 end

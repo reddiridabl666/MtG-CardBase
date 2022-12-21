@@ -1,22 +1,19 @@
-<div class="col-8 mb-5 me-0 overflow-clip">
-  <div class="cards-heading mb-5 ms-4 w-100">
+<div class="col-8 mb-5 me-0 ps-4 overflow-clip">
+  <div class="cards-heading mb-5 w-100">
     <%= render partial: "card_header" %>
   </div>
 
-  <div class="mt-5 card-entries ms-4 w-100">
+  <div class="mt-5 card-entries w-100">
     <% @cards.each do |card| %>
       <%= render partial: "card_entry", locals: { instance: card } %>
     <% end %>
   </div>
   </div>
 
-  <div class="col-1 mx-0"></div>
-
-<div class="col-3 ms-0">
-  <%= render partial: 'menu' %>
+<div class="col-4 ms-0 ps-5 pe-4">
+    <%= render partial: 'menu' %>
 </div>
 
-  <%= render partial: "footer" %>
+<%= render partial: "footer" %>
 
 <%= javascript_include_tag "show-extended" %>
-

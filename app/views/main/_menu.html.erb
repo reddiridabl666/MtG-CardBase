@@ -1,4 +1,4 @@
-<%= form_with url: root_path, method: :get, class: 'menu mt-5 position-sticky' do |form| %>
+<%= form_with url: root_path, method: :get, class: 'position-fixed menu mt-5' do |form| %>
   <div class="row form-group">
     <%= form.label :name, 'Name', class: "col-3"%>
     <div class="col-9">
@@ -17,7 +17,7 @@
       <%= form.text_field :flavour, class: "form-control" %>
     </div>
   </div>
-  <div class="row mt-2 d-flex align-items-center">
+<!--  <div class="row mt-2 d-flex align-items-center">-->
 <!--    <div class="dropdown col-4">-->
 <!--      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
 <!--        Expansions-->
@@ -34,35 +34,35 @@
 <!--      </div>-->
 <!--    </div>-->
 
-    <div class="row gx-4 col-5 form-group align-items-center">
-      <%= form.label :set, 'Expansion', class: 'col-6' %>
+    <div class="ms-2 gx-4 row mt-2 form-group align-items-center justify-content-center">
+      <%= form.label :set, 'Expansion', class: 'col-3' %>
       <div class="col-6">
-        <%= form.select :type, Expansion.all.to_a, class: "ms-2 form-select" %>
+        <%= form.select :set, @expansions, class: "ms-2 form-select" %>
       </div>
     </div>
 
-    <div class="form-group col-7 row mt-2">
-      <div class="d-flex align-items-center col-2">
+    <div class="form-group row gx-5 mt-3 justify-content-center">
+      <div class="d-flex align-items-center col-1">
         <%= form.label :color_w, image_tag("symbols/w.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
         <%= form.check_box :color_w, class: "ms-1 checkbox" %>
       </div>
 
-      <div class="d-flex align-items-center col-2">
+      <div class="d-flex align-items-center col-1">
         <%= form.label :color_b, image_tag("symbols/b.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
         <%= form.check_box :color_b, class: "ms-1 checkbox" %>
       </div>
 
-      <div class="d-flex align-items-center col-2">
+      <div class="d-flex align-items-center col-1">
         <%= form.label :color_u, image_tag("symbols/u.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
         <%= form.check_box :color_u, class: "ms-1 checkbox" %>
       </div>
 
-      <div class="d-flex align-items-center col-2">
+      <div class="d-flex align-items-center col-1">
         <%= form.label :color_r, image_tag("symbols/r.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
         <%= form.check_box :color_r, class: "ms-1 checkbox" %>
       </div>
 
-      <div class="d-flex align-items-center col-2">
+      <div class="d-flex align-items-center col-1">
         <%= form.label :color_g, image_tag("symbols/g.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE) %>
         <%= form.check_box :color_g, class: "ms-1 checkbox" %>
       </div>
@@ -72,51 +72,47 @@
         <%= form.check_box :color_c, class: "ms-1 checkbox" %>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-6">
-      <div class="row form-group">
-        <%= form.label :type, 'Type', class: 'col-4' %>
-        <div class="col-8">
-          <%= form.select :type, CardType.where(type_scope: :normal).to_a, class: "ms-1 form-select" %>
-        </div>
-      </div>
-
-      <div class="row form-group mt-2">
-        <%= form.label :subtype, 'Subtype', class: 'col-4' %>
-        <div class="col-8">
-          <%= form.select :subtype, CardType.where(type_scope: :sub).to_a, class: "ms-1 form-select" %>
-        </div>
-      </div>
-
-      <div class="row form-group mt-2">
-        <%= form.label :supertype, 'Supertype', class: 'col-4' %>
-        <div class="col-8">
-          <%= form.select :supertype, CardType.where(type_scope: :super).to_a, class: "ms-1 form-select" %>
-        </div>
+    <div class="row form-group mt-3 justify-content-center">
+      <%= form.label :supertypes, 'Supertype', class: 'col-3' %>
+      <div class="col-5">
+        <%= form.select :supertypes, @supertypes, class: "ms-1 form-select" %>
       </div>
     </div>
-    <div class="col-6">
-      <div class="row form-group">
-        <%= form.number_field :cost_ge, class: 'col-2 p-0 ps-1' %>
-        <span class="text-primary col-7 pe-0 text-center"><= Mana value <=</span>
-        <%= form.number_field :cost_le, class: 'col-2 p-0 ps-1 ms-1'  %>
-      </div>
 
-      <div class="row form-group mt-2">
-        <%= form.number_field :power_ge, class: 'col-2 p-0 ps-1' %>
-        <span class="text-primary col-7 text-center"><= Power <=</span>
-        <%= form.number_field :power_le, class: 'col-2 p-0 ps-1 ms-1'  %>
-      </div>
-
-      <div class="row form-group mt-2">
-        <%= form.number_field :toughness_ge, class: 'col-2 p-0 ps-1' %>
-        <span class="text-primary col-7 pe-0 text-center"><= Toughness <=</span>
-        <%= form.number_field :toughness_le, class: 'col-2 p-0 ps-1 ms-1'  %>
+    <div class="row form-group mt-2 justify-content-center">
+      <%= form.label :types, 'Type', class: 'col-3' %>
+      <div class="col-5">
+        <%= form.select :types, @types, class: "ms-1 form-select" %>
       </div>
     </div>
-  </div>
+
+    <div class="row form-group mt-2 justify-content-center">
+      <%= form.label :subtypes, 'Subtype', class: 'col-3' %>
+      <div class="col-5">
+        <%= form.select :subtypes, @subtypes, class: "ms-1 form-select" %>
+      </div>
+    </div>
+
+<!--    </div>-->
+<!--    <div class="col-6">-->
+    <div class="row form-group mt-2 justify-content-center">
+      <%= form.number_field :cost_ge, in: 0..99, class: 'col-1 p-0 ps-1' %>
+      <span class="text-primary col-4 pe-0 text-center"><= Mana value <=</span>
+      <%= form.number_field :cost_le, in: 0..99,  class: 'col-1 p-0 ps-1 ms-1'  %>
+    </div>
+
+    <div class="row form-group mt-2 justify-content-center">
+      <%= form.number_field :power_ge, in: 0..99, class: 'col-1 p-0 ps-1' %>
+      <span class="text-primary col-4 text-center"><= Power <=</span>
+      <%= form.number_field :power_le, in: 0..99, class: 'col-1 p-0 ps-1 ms-1'  %>
+    </div>
+
+    <div class="row form-group mt-2 justify-content-center">
+      <%= form.number_field :toughness_ge, in: 0..99, class: 'col-1 p-0 ps-1' %>
+      <span class="text-primary col-4 pe-0 text-center"><= Toughness <=</span>
+      <%= form.number_field :toughness_le, in: 0..99, class: 'col-1 p-0 ps-1 ms-1'  %>
+    </div>
 
   <div class="row mt-4">
     <div class="col-3"></div>

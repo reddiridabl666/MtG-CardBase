@@ -6,6 +6,8 @@ class Expansion < ApplicationRecord
 
   validates :card_num, numericality: { only_integer: true, greater_than: 0 }
 
+  default_scope { order(code: :asc) }
+
   def symbol(rarity, size=1)
     "ss ss-#{code.downcase} ss-#{rarity}#{size == 1 ? "" : " ss-#{size}x"}"
   end
