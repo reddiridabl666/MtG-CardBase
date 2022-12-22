@@ -1,5 +1,5 @@
 <div id="<%= dom_id card_instance %>" class="row my-2 align-items-center">
-  <div class="col-3 me-2">
+  <div class="col-4 me-2">
     <% if card_instance.image.representable? %>
       <%= image_tag card_instance.image.representation(resize_to_limit: [284, 400]) %>
     <% else %>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-4">
-    <div class="">
+    <div class="large-font">
       <%= process_text(card_instance.card.text) %>
     </div>
     <div class="italic mt-2"><%= card_instance.flavour_text %></div>

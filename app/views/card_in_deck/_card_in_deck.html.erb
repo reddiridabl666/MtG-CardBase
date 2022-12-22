@@ -1,0 +1,17 @@
+<div class="row outline">
+  <div class="col-2">
+    <%= card_in_deck.card_instance.card.name %>
+  </div>
+  <div class="col-2">
+    <%= render partial: 'manacost', locals: { card: card_in_deck.card_instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE } %>
+  </div>
+  <div class="col-2">
+    <%= card_in_deck.card_instance.card.types.join ' ' %>
+  </div>
+  <div class="col-2">
+    <%= render partial: 'set_symbol', locals: { card: card_in_deck.card_instance } %>
+  </div>
+  <div class="col-2">
+    <%= card_in_deck.count %>
+  </div>
+</div>

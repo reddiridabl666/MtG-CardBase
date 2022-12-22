@@ -1,0 +1,5 @@
+<div class="col-1 form-check form-check-secondary me-4">
+  <% color_sym = "color_#{color}".to_sym  %>
+  <%= form.check_box color_sym, class: "form-check-input color-secondary me-0", checked: checked?(color_sym) %>
+  <%= form.label color_sym, image_tag("symbols/#{color}.svg", size: ApplicationHelper::MTG_SYMBOL_SIZE_MID), class: 'symbol-btn form-check-label' %>
+</div>

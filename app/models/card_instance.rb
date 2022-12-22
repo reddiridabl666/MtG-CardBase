@@ -32,8 +32,8 @@ class CardInstance < ApplicationRecord
     expansion.symbol('common', size)
   end
 
-  def self.filter_by_expansion(cards, code)
-    cards = cards.where(expansion_id: Expansion.find_by_code(code)) if code.present?
+  def self.filter_by_expansion(cards, name)
+    cards = cards.where(expansion_id: Expansion.find_by_name(name)) if name.present?
 
     cards
   end

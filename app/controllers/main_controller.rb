@@ -1,11 +1,16 @@
 class MainController < ApplicationController
-  before_action :page
+  before_action :redirect_if_not_logged_in, only: [:create_deck, :deck_format]
+
   def index
-    @cards = CardInstance.filtered(params).page @page
-    @expansions = [''] + Expansion.all
-    @supertypes = [''] + CardType.where(type_scope: :super).to_a
-    @types = [''] + CardType.where(type_scope: :normal).to_a
-    @subtypes = [''] + CardType.where(type_scope: :sub).to_a
+    @params = { color_w: 1, color_b: 1, color_u: 1, color_r: 1, color_g: 1, color_c: 1 }
+    @cards = CardInstance.filtered(@params).page @page
+  end
+
+  def filtered
+    @params = params
+    @show_filters = true
+    @cards = CardInstance.filtered(@params).page @page
+    render 'index'
   end
 
   def by_set
@@ -15,26 +20,20 @@ class MainController < ApplicationController
     return redirect_to root_path if expansion.nil?
     @cards = CardInstance.where(expansion_id: expansion.id).page @page
 
+    @params = params
     render 'index'
   end
 
-  private
+  def deck_format; end
 
-  def page
-    @page = params[:page].present? ? params[:page] : 1
-    @page = [CardInstance.page.total_pages, @page.to_i].min
+  def create_deck
+    redirect_to root_path, alert: 'Invalid decks format' if Format.find_by_id(params[:deck_format]).blank?
+
+    session[:is_deckbuilding] = true
+    @deck = Deck.new(format: Format.find_by_id(params[:deck_format]), user_id: current_user&.id)
+
+    raise 'DECK ERROR' unless @deck.valid?
+
+    session[:deck] = @deck
   end
-
-  # def filtered_cards(params)
-  #   cards = CardInstance.all
-  #   cards = CardInstance.filter_by_expansion(cards, params[:set])
-  #
-  #   cards = CardInstance.filter_by_mana(cards, params[:cost_ge], params[:cost_le])
-  #   cards = CardInstance.filter_by_power(cards, params[:cost_ge], params[:cost_le])
-  #
-  #   cards = CardInstance.filter_by_toughness(cards, params[:cost_ge], params[:cost_le])
-  #   cards = CardInstance.filter_by_types(cards, params[:types], params[:subtypes], params[:supertypes])
-  #
-  #   cards
-  # end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_091559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "card_in_decks", force: :cascade do |t|
+    t.bigint "deck_id", null: false
+    t.bigint "card_instance_id", null: false
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_instance_id"], name: "index_card_in_decks_on_card_instance_id"
+    t.index ["deck_id"], name: "index_card_in_decks_on_deck_id"
   end
 
   create_table "card_instances", force: :cascade do |t|
@@ -78,6 +88,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
     t.index ["name"], name: "index_cards_on_name", unique: true
   end
 
+  create_table "decks", force: :cascade do |t|
+    t.string "name"
+    t.bigint "format_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["format_id"], name: "index_decks_on_format_id"
+    t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
   create_table "expansions", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -87,6 +107,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_expansions_on_code", unique: true
     t.index ["name"], name: "index_expansions_on_name", unique: true
+  end
+
+  create_table "formats", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_cards", default: 60
+    t.integer "max_same", default: 4
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "max_cards"
+    t.index ["name"], name: "index_formats_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,6 +130,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_211817) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "card_in_decks", "card_instances"
+  add_foreign_key "card_in_decks", "decks"
   add_foreign_key "card_instances", "cards"
   add_foreign_key "card_instances", "expansions"
+  add_foreign_key "decks", "formats"
+  add_foreign_key "decks", "users"
 end

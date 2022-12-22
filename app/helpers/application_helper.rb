@@ -5,6 +5,7 @@ module ApplicationHelper
   end
 
   MTG_SYMBOL_SIZE_BIG = '24x24'.freeze
+  MTG_SYMBOL_SIZE_MID = '20x20'.freeze
   MTG_SYMBOL_SIZE = '18x18'.freeze
 
   def replace_mtg_symbols(str, size=MTG_SYMBOL_SIZE)
@@ -18,5 +19,9 @@ module ApplicationHelper
   def get_mtg_symbols(str)
     puts str
     str.scan(Card::MTG_SYMBOL).map { |match| "symbols/#{match.first[1...-1].delete('/').downcase}.svg" }
+  end
+
+  def checked?(key)
+    @params[key].present? ? !@params[key].to_i.zero? : false
   end
 end

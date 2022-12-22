@@ -16,11 +16,20 @@ for (let btn of dropdown_buttons()) {
 
 function showCard(card, btn) {
     btn.classList.add('rotated');
-    card.classList.add('active');
+    show(card);
 }
+
 function hideCard(card, btn) {
     btn.classList.remove('rotated');
-    card.classList.remove('active');
+    hide(card)
+}
+
+function show(obj) {
+    obj.classList.add('active');
+}
+
+function hide(obj) {
+    obj.classList.remove('active');
 }
 
 function cardByBtn(btn) {
@@ -41,3 +50,15 @@ document.getElementById('expand-btn').addEventListener('click', () => {
     }
 });
 
+document.getElementById('filter-btn').addEventListener('click', () => {
+    const filter_form = document.getElementById('filter-form');
+    if (!filter_form.classList.contains('active')) {
+        show(filter_form);
+    } else {
+        hide(filter_form);
+    }
+});
+
+document.getElementById('new-deck-btn').addEventListener('click', (event) => {
+    event.target.style.display = 'none';
+});

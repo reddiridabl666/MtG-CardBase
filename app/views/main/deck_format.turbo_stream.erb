@@ -1,0 +1,10 @@
+<%= turbo_stream.update "deck" do %>
+  <h4>New Deck</h4>
+  <%= form_with url: deck_path, method: :get do |form| %>
+    <%= form.label :deck_format, 'Choose format:', class: 'form-label large-font me-2' %>
+    <%= form.collection_select :deck_format, Format.all, :id, :name, class: 'form-select large-font ms-4' %>
+    <div class="">
+      <button class="btn btn-primary">Create</button>
+    </div>
+  <% end %>
+<% end %>

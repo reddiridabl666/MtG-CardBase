@@ -42,18 +42,15 @@ a {
     text-decoration: none;
 }
 
-.entry-extended {
-    transition: opacity 1.3s;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-}
-
 .hover-gray:hover {
     background-color: #e1dddd;
 }
 
 .menu-btn {
+    font-size: larger;
+}
+
+.large-font {
     font-size: larger;
 }
 
@@ -75,11 +72,31 @@ body {
     transform: rotate(180deg);
 }
 
+.inactive {
+    transition: opacity 1.3s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
 .active {
     opacity: 1;
     height: auto;
 }
 
 .menu {
-    top: 50px;
+    top: 100px;
+}
+
+.symbol-btn {
+    cursor: pointer !important;
+}
+
+.symbol-btn ~ *:checked {
+
+    color: rgba(255, 0, 0, 0.45)
+}
+
+#deck {
+    /*top: 100px;*/
 }
