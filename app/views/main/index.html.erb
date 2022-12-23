@@ -2,7 +2,7 @@
 
 <div class="col-1"></div>
 
-<%= render partial: "sidebar" %>
+<%= render partial: "sidebar", locals: { deck: @deck} %>
 
 <%= render partial: "footer", locals: { objects: @cards } %>
 

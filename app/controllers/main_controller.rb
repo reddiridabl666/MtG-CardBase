@@ -1,5 +1,6 @@
 class MainController < ApplicationController
-  before_action :page, :init_meta_info#, :find_deck
+  before_action :page, :init_meta_info, only: [:index, :filtered, :by_set, :create_deck]
+  before_action :init_params, only: [:filtered, :by_set, :create_deck]
   before_action :redirect_if_not_logged_in, only: [:create_deck, :deck_format, :add_card]
 
   def index
@@ -21,7 +22,6 @@ class MainController < ApplicationController
     return redirect_to root_path if expansion.nil?
     @cards = CardInstance.where(expansion_id: expansion.id).page @page
 
-    @params = params
     render 'index'
   end
 
@@ -30,12 +30,15 @@ class MainController < ApplicationController
   def create_deck
     redirect_to root_path, alert: 'Invalid decks format' if Format.find_by_id(params[:deck_format]).blank?
 
+    @cards = CardInstance.filtered(@params).page @page
+
     session[:is_deckbuilding] = true
     @deck = Deck.new(format: Format.find_by_id(params[:deck_format]), user_id: current_user&.id)
 
     raise 'DECK ERROR' unless @deck.valid?
 
     session[:deck] = @deck
+    render 'index'
   end
 
   def save_deck
@@ -65,6 +68,10 @@ class MainController < ApplicationController
     @supertypes = [''] + CardType.where(type_scope: :super).to_a
     @types = [''] + CardType.where(type_scope: :normal).to_a
     @subtypes = [''] + CardType.where(type_scope: :sub).to_a
+  end
+
+  def init_params
+    @params = params
   end
 
   # def find_deck
