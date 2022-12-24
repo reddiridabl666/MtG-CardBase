@@ -1,0 +1,3 @@
+<%= turbo_stream.update "deck" do %>
+  <%= render partial: @deck unless @deck.blank? %>
+<% end %>

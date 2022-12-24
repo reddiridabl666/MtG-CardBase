@@ -1,7 +1,7 @@
 <div class="row mt-1 card-entry small">
   <div id="base-<%= dom_id card_instance %>" class="entry-base row col-11 list-group list-group-horizontal p-0 outline">
     <div class="col-3 list-group-item centered">
-      <span class="bold large-font small"><%= card_instance.card.name %></span>
+      <span class="bold medium-font"><%= card_instance.card.name %></span>
     </div>
     <div class="col-4 list-group-item centered">
       <span><%= card_instance.card.type %></span>
@@ -20,28 +20,23 @@
     </div>
   </div>
 
-  <% if user_authenticated && user_is_deckbuilding %>
-    <div class="col-1 row list-group list-group-horizontal p-0 outline ms-4">
+    <div class="col-1 card-buttons row list-group list-group-horizontal p-0 outline ms-4
+            <%= 'd-none' if !user_authenticated || !user_is_deckbuilding %>">
       <div class="col-6 list-group-item p-1 centered">
         <button id="btn-<%= dom_id card_instance %>" class="entry-btn dropdown-btn"><%= image_tag 'dropdown.png', size: '26x13' %></button>
       </div>
       <div class="col-6 list-group-item centered p-0">
-<!--        <button class="entry-btn"><%#= image_tag 'plus.svg', size: '30x30' %></button>-->
-        <%= button_to image_tag('plus.svg', size: '30x30'), add_card_path, method: :post, class: "entry-btn" %>
+        <%= button_to image_tag('plus.svg', size: '30x30'), add_card_path, method: :patch, class: "entry-btn" %>
       </div>
-<!--      <div class="col-4 list-group-item centered">-->
-<!--        <button class="entry-btn"><%#= image_tag 'minus.svg', size: '30x30' %></button>-->
-<!--      </div>-->
     </div>
-  <% else %>
-    <div class="col-1 list-group list-group-horizontal p-0 ms-4">
+
+    <div class="col-1 dropdown-btn-container list-group list-group-horizontal p-0 ms-4 <%= 'd-none' if user_is_deckbuilding %>">
       <div class="list-group-item centered outline">
         <button id="btn-<%= dom_id card_instance %>" class="entry-btn dropdown-btn"><%= image_tag 'dropdown.png', size: '32x16' %></button>
       </div>
     </div>
-  <% end %>
 
-  <div id="extended-<%= dom_id card_instance %>" class="inactive">
+  <div id="extended-<%= dom_id card_instance %>" class="hidden">
     <%= render partial: 'card_instances/card_extended', locals: { card_instance: card_instance } %>
   </div>
 </div>

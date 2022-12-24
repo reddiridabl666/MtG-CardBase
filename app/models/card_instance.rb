@@ -42,6 +42,6 @@ class CardInstance < ApplicationRecord
     cards = Card.filtered(params)
     instances = CardInstance.where(card_id: cards)
 
-    instances = self.filter_by_expansion(instances, params[:set])
+    self.filter_by_expansion(instances, params[:set])
   end
 end

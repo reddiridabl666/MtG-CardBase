@@ -2,11 +2,19 @@ function dropdown_buttons() {
     return document.getElementsByClassName('dropdown-btn');
 }
 
+function card_buttons() {
+    return document.getElementsByClassName('card-buttons');
+}
+
+function dropdown_button_containers() {
+    return document.getElementsByClassName('dropdown-btn-container');
+}
+
 for (let btn of dropdown_buttons()) {
     let card = cardByBtn(btn);
 
     btn.addEventListener('click', () => {
-        if (!card.classList.contains('active')) {
+        if (!card.classList.contains('shown')) {
             showCard(card, btn);
         } else {
             hideCard(card, btn);
@@ -25,11 +33,11 @@ function hideCard(card, btn) {
 }
 
 function show(obj) {
-    obj.classList.add('active');
+    obj.classList.add('shown');
 }
 
 function hide(obj) {
-    obj.classList.remove('active');
+    obj.classList.remove('shown');
 }
 
 function cardByBtn(btn) {
@@ -52,7 +60,7 @@ document.getElementById('expand-btn').addEventListener('click', () => {
 
 document.getElementById('filter-btn').addEventListener('click', () => {
     const filter_form = document.getElementById('filter-form');
-    if (!filter_form.classList.contains('active')) {
+    if (!filter_form.classList.contains('shown')) {
         show(filter_form);
     } else {
         hide(filter_form);
@@ -60,5 +68,15 @@ document.getElementById('filter-btn').addEventListener('click', () => {
 });
 
 document.getElementById('new-deck-btn').addEventListener('click', (event) => {
-    event.target.style.display = 'none';
+    hide(event.target);
 });
+
+// document.getElementById('create-deck-btn').addEventListener('click', () => {
+//     for (let obj of dropdown_button_containers()) {
+//         obj.style.display = 'none';
+//     }
+//
+//     for (let obj of card_buttons()) {
+//         obj.style.display = 'flex';
+//     }
+// });

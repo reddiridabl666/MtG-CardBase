@@ -7,15 +7,16 @@ Rails.application.routes.draw do
 
   post 'authorize', to: "session#authorize"
 
-  get 'set/:code', to: "main#by_set"
   get 'filtered', to: "main#filtered"
 
-  post 'create_deck', to: "main#create_deck"
-  post 'save_deck', to: "main#save_deck"
-  post 'delete_deck', to: "main#delete_deck"
-  post 'add_card', to: "main#add_card"
+  get 'deck_building', to: "main#deck_building"
 
-  post 'deck_format', to: "main#deck_format"
+  post 'create_deck', to: "main#create_deck"
+  patch 'save_deck', to: "main#save_deck"
+  delete 'delete_deck', to: "main#delete_deck"
+  patch 'add_card', to: "main#add_card"
+
+  get 'deck_format', to: "main#deck_format", format: 'turbo_stream'
 
   resources :users
   root "main#index"

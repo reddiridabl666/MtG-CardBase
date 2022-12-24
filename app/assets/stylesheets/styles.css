@@ -72,14 +72,14 @@ body {
     transform: rotate(180deg);
 }
 
-.inactive {
+.hidden {
     transition: opacity 1.3s;
     opacity: 0;
     height: 0;
     overflow: hidden;
 }
 
-.active {
+.shown {
     opacity: 1;
     height: auto;
 }
@@ -97,6 +97,7 @@ body {
     color: rgba(255, 0, 0, 0.45)
 }
 
-#deck {
-    /*top: 100px;*/
+.medium-font {
+    font-size: 1.1em;
+    /*font-size: medium;*/
 }

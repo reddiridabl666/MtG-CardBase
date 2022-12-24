@@ -1,9 +1,9 @@
+<%= javascript_include_tag "show-extended", defer: "defer" %>
+
 <%= render partial: 'cards', locals: { cards: @cards } %>
 
 <div class="col-1"></div>
 
-<%= render partial: "sidebar", locals: { deck: @deck} %>
+<%= render partial: "sidebar" %>
 
 <%= render partial: "footer", locals: { objects: @cards } %>
-
-<%= javascript_include_tag "show-extended" %>

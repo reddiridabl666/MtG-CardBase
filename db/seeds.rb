@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# Format.create(name: 'Commander', max_same: 1, min_cards: 100, max_cards: 100)
-# Format.create(name: 'Standard')
-# Format.create(name: 'Modern')
+Format.create(name: 'Commander', max_same: 1, min_cards: 100, max_cards: 100)
+Format.create(name: 'Standard')
+Format.create(name: 'Modern')

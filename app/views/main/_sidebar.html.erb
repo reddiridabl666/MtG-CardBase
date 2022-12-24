@@ -1,10 +1,10 @@
-<% deck ||= nil %>
+<% @deck ||= nil %>
 
 <div class="col-4 mt-5 ms-0 ps-5 pe-4">
   <div class="position-fixed menu">
     <%= render partial: 'menu' %>
-    <div id="deck" class="mt-5">
-      <%= render deck unless deck.blank? %>
+    <div id="deck" class="mt-5 row">
+      <%= render partial: @deck unless @deck.blank? %>
     </div>
 
     <div id="errors">

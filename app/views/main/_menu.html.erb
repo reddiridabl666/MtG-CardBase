@@ -3,7 +3,7 @@
   <button class="col-6 btn btn-outline-primary text-dark" id='filter-btn'>Filters</button>
 </div>
 
-<%= form_with url: filtered_path, method: :get, class: "mt-3 inactive #{'active' if @show_filters}", id: 'filter-form' do |form| %>
+<%= form_with url: filtered_path, method: :get, class: "mt-3 hidden #{'shown' if @show_filters}", id: 'filter-form' do |form| %>
   <div class="row form-group">
     <%= form.label :name, 'Name', class: "col-3"%>
     <div class="col-9">
