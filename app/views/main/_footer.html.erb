@@ -3,7 +3,7 @@
     <%= paginate objects %>
   </div>
   <div class="col-1 d-flex align-items-center">
-    <%= button_to 'New Deck', deck_format_path, id: 'new-deck-btn', class: "inactive #{'active' if user_authenticated && !user_is_deckbuilding}
+    <%= button_to 'New Deck', deck_format_path, id: 'new-deck-btn', class: "#{'d-none' if !user_authenticated || user_is_deckbuilding}
         btn btn-outline-secondary text-light", method: :get, form: {"data-type": "turbo_stream" }%>
   </div>
 </footer>

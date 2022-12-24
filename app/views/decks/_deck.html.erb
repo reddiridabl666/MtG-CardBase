@@ -1,3 +1,4 @@
+<h4>New Deck</h4>
 <%= form_with url: save_deck_path, class: 'align-items-center mt-2', method: :patch, id: 'deck-save-form' do |form| %>
   <div class="row align-items-center">
     <%= form.label :deck_name, 'Name', class: 'col-2 h5' %>
@@ -12,7 +13,7 @@
 
   <% unless deck.cards.empty? %>
     <div class="row list-group list-group-horizontal outline small mt-3">
-      <div class="col-4 list-group-item centered p-1">
+      <div class="col-5 list-group-item centered p-1">
         <span>Name</span>
       </div>
       <div class="col-3 list-group-item centered p-1">
@@ -21,8 +22,8 @@
       <div class="col-2 list-group-item centered p-1">
         <span>Manacost</span>
       </div>
-      <div class="col-2 list-group-item centered p-1">
-        <span>Expansion</span>
+      <div class="col-1 list-group-item centered p-1">
+        <span>Set</span>
       </div>
       <div class="col-1 list-group-item centered p-1 pe-2 ps-2">
         <span>Count</span>
@@ -50,6 +51,8 @@
         for (let obj of document.getElementsByClassName('dropdown-btn-container')) {
             obj.classList.remove('d-none')
         }
+
+        document.getElementById('new-deck-btn').classList.remove('d-none')
     }
 
   document.getElementById('delete-deck-btn').addEventListener('click', abort_deck_building);

@@ -2,7 +2,7 @@ class Deck < ApplicationRecord
   belongs_to :format
   belongs_to :user
 
-  has_many :cards, class_name: 'CardInDeck'
+  has_many :cards, class_name: 'CardInDeck', dependent: :delete_all
 
   private
 

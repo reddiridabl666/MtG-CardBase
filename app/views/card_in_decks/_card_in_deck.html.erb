@@ -1,0 +1,17 @@
+<div class="row list-group list-group-horizontal outline mt-1">
+  <div class="list-group-item col-5 p-0 text-center">
+    <%= card_in_deck.card_instance.card.name %>
+  </div>
+  <div class="list-group-item col-3 p-0 text-center">
+    <%= card_in_deck.card_instance.card.types.join ' ' %>
+  </div>
+  <div class="list-group-item col-2 p-0 text-center">
+    <%= render partial: 'manacost', locals: { card: card_in_deck.card_instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE } %>
+  </div>
+  <div class="list-group-item col-1 p-0 text-center">
+    <%= render partial: 'set_symbol', locals: { card: card_in_deck.card_instance, size: 1 } %>
+  </div>
+  <div class="list-group-item col-1 p-0 text-center">
+    <%= card_in_deck.num %>
+  </div>
+</div>

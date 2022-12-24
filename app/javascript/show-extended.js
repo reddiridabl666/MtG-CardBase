@@ -68,7 +68,7 @@ document.getElementById('filter-btn').addEventListener('click', () => {
 });
 
 document.getElementById('new-deck-btn').addEventListener('click', (event) => {
-    hide(event.target);
+    event.target.classList.add('d-none');
 });
 
 // document.getElementById('create-deck-btn').addEventListener('click', () => {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_091559) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_24_183512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_091559) do
   create_table "card_in_decks", force: :cascade do |t|
     t.bigint "deck_id", null: false
     t.bigint "card_instance_id", null: false
-    t.integer "count"
+    t.integer "num", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_instance_id"], name: "index_card_in_decks_on_card_instance_id"
