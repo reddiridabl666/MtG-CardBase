@@ -1,0 +1,67 @@
+<%= form_with url: save_deck_path, class: 'align-items-center mt-2', method: :patch, id: 'deck-save-form' do |form| %>
+  <h4 class="bold">New Deck</h4>
+
+  <%= render partial: 'flash', locals: { types: ['deck_alert'] } %>
+
+  <div class="row align-items-center">
+    <%= form.label :deck_name, 'Name', class: 'col-2 h5' %>
+    <div class="col-5">
+      <%= form.text_field :deck_name, class: 'form-control', required: true, value: deck.name %>
+    </div>
+
+    <div class="col-5">
+      <%= form.collection_select :deck_format, Format.all, :id, :name, selected: deck.format.id, class: 'form-select large-font ms-3 p-2' %>
+    </div>
+  </div>
+
+  <% %w[Creature Enchantment Planeswalker Sorcery Instant Artifact Land].each do |type| %>
+    <% cards = deck.cards.all %>
+    <% filtered = cards.filter { |card| card.card_instance.card.types.include? type }.sort_by { |card| card.card_instance.card.mana_value } %>
+
+    <% unless filtered.empty? %>
+      <h6 class="mt-3 bold"><%= type.pluralize(2) %></h6>
+      <%= render partial: 'decks/deck_header' %>
+      <div class="cards">
+        <% filtered.each do |card| %>
+          <%= render card %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="row mt-3 justify-content-center">
+    <%= form.submit 'Save', class: "col-3 btn btn-outline-success" %>
+    <%= link_to 'Delete', delete_deck_path, class: "col-3 btn btn-outline-danger ms-2", id: "delete-deck-btn",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+  </div>
+<% end %>
+
+<script>
+    function abort_deck_building() {
+        for (let obj of document.getElementsByClassName('card-buttons')) {
+            obj.classList.add('d-none');
+        }
+
+        for (let obj of document.getElementsByClassName('dropdown-btn-container')) {
+            obj.classList.remove('d-none')
+        }
+
+        document.getElementById('new-deck-btn').classList.remove('d-none')
+    }
+
+  document.getElementById('delete-deck-btn').addEventListener('click', abort_deck_building);
+  document.getElementById('deck-save-form').addEventListener('submit', abort_deck_building);
+
+  for (let card of document.getElementsByClassName('deck-card')) {
+      let img = card.getElementsByClassName('deck-card-img')[0];
+      let info = card.getElementsByClassName('deck-card-info')[0];
+
+      info.addEventListener('mouseenter', () => {
+          img.classList.add('shown')
+      });
+
+      info.addEventListener('mouseleave', () => {
+          img.classList.remove('shown')
+      });
+  }
+</script>

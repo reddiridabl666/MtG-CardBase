@@ -1,0 +1,20 @@
+<div class="row mt-1 card-entry small align-items-center">
+  <div id="<%= dom_id deck %>" class="entry-base row col-6 ms-1 list-group list-group-horizontal p-0 outline">
+    <div class="col-4 list-group-item centered">
+      <span class="bold"><%= deck.name %></span>
+    </div>
+    <div class="col-3 list-group-item centered">
+      <span><%= deck.user.name %></span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span><%= replace_mtg_symbols(deck.colors) %></span>
+    </div>
+    <div class="col-3 list-group-item centered">
+      <span><%= deck.format.name %></span>
+    </div>
+  </div>
+
+  <div class="col-2 ms-3">
+    <%= link_to 'View', show_deck_path, class: 'btn btn-outline-primary' %>
+  </div>
+</div>

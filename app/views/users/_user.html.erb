@@ -1,14 +1,10 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
+<div id="<%= dom_id user %>" class="d-flex align-items-center mt-2">
+  <p class="h5">
+    <strong>User:</strong>
     <%= user.name %>
   </p>
 
-  <% if current_user&.is_admin %>
-  <p>
-    <strong>Is admin:</strong>
-    <%= user.is_admin %>
-  </p>
-  <% end %>
-
+  <div class="ms-3">
+    <%= link_to 'Decks', decks_path(user.name), class: 'btn btn-outline-primary' %>
+  </div>
 </div>
