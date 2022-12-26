@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def process_text(str, size=MTG_SYMBOL_SIZE)
     return if str.nil?
     replace_mtg_symbols(str.strip.gsub(/\n/, '<br/>'), size).html_safe
   end
 
-  MTG_SYMBOL_SIZE_BIG = '24x24'.freeze
-  MTG_SYMBOL_SIZE_MID = '20x20'.freeze
-  MTG_SYMBOL_SIZE = '18x18'.freeze
+  MTG_SYMBOL_SIZE_BIG = '24x24'
+  MTG_SYMBOL_SIZE_MID = '20x20'
+  MTG_SYMBOL_SIZE = '18x18'
+  MTG_SYMBOL_SIZE_MIN = '14x14'
 
   def replace_mtg_symbols(str, size=MTG_SYMBOL_SIZE)
     return if str.nil?

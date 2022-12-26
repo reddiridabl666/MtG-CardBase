@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   get 'filtered', to: "main#filtered"
 
-  get 'deck_building', to: "main#deck_building"
+  post 'create_deck', to: "decks#create_deck"
+  patch 'save_deck', to: "decks#save_deck"
+  delete 'delete_deck', to: "decks#delete_deck"
 
-  post 'create_deck', to: "main#create_deck"
-  patch 'save_deck', to: "main#save_deck"
-  delete 'delete_deck', to: "main#delete_deck"
-  patch 'add_card', to: "main#add_card"
+  patch 'add_card', to: "decks#add_card"
+  patch 'remove_card', to: "decks#remove_card"
 
   get 'deck_format', to: "main#deck_format", format: 'turbo_stream'
 

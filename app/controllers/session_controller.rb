@@ -10,8 +10,7 @@ class SessionController < ApplicationController
   end
 
   def logout
-    session[:current_user_id] = nil
-    session[:is_deckbuilding] = nil
+    reset_session
     redirect_to root_path
   end
 

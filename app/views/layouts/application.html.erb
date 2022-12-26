@@ -18,15 +18,20 @@
 <header class="navbar navbar-expand-md navbar-dark fixed-top bg-dark row">
   <h1 class="col-6 ms-3 mt-3 text-light">MtG Cardbase </h1>
   <div class="col-4 d-flex align-items-center justify-content-center">
-    <a href="<%= root_path %>" class="text-light h5 me-3 btn btn-outline-secondary menu-btn">Cards</a>
-    <a href="<%= decks_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Decks</a>
+    <% if user_authenticated %>
+      <%= link_to 'Users', users_path, class: "text-light h5 me-3 btn btn-outline-secondary menu-btn"%>
+      <%#= link_to 'Decks', decks_path, class: "text-light h5 btn btn-outline-secondary menu-btn"%>
+    <% end %>
+
+    <%= link_to 'Cards', root_path, class: "text-light h5 me-3 btn btn-outline-secondary menu-btn"%>
+    <%= link_to 'Decks', decks_path, class: "text-light h5 btn btn-outline-secondary menu-btn"%>
   </div>
   <div class="col-2 d-flex align-items-center justify-content-center">
     <% if user_authenticated %>
-      <a href="<%= logout_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Sign Out</a>
-    <% else %>
-      <a href="<%= login_path %>" class="text-light h5 me-3 btn btn-outline-secondary menu-btn">Log In</a>
-      <a href="<%= signup_path %>" class="text-light h5 btn btn-outline-secondary menu-btn">Sign Up</a>
+      <%= link_to 'Sign Out', logout_path, class: "text-light h5 btn btn-outline-secondary menu-btn"%>
+  <% else %>
+      <%= link_to 'Log In', login_path, class: "text-light h5 me-3 btn btn-outline-secondary menu-btn"%>
+      <%= link_to 'Sign Up', signup_path, class: "text-light h5 btn btn-outline-secondary menu-btn"%>
     <% end %>
   </div>
 </header>

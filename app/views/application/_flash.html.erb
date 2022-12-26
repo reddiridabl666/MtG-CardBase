@@ -1,0 +1,7 @@
+<div class="flash">
+  <% flash.each do |type, msg| %>
+    <% if types.include? type %>
+      <p class="text-danger"><%= msg %></p>
+    <% end %>
+  <% end %>
+</div>

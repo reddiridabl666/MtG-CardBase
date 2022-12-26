@@ -73,7 +73,7 @@ body {
 }
 
 .hidden {
-    transition: opacity 1.3s;
+    transition: all 1.3s;
     opacity: 0;
     height: 0;
     overflow: hidden;
@@ -86,18 +86,32 @@ body {
 
 .menu {
     top: 100px;
+    bottom: 0;
+    overflow-y: auto;
 }
 
 .symbol-btn {
     cursor: pointer !important;
 }
 
-.symbol-btn ~ *:checked {
-
-    color: rgba(255, 0, 0, 0.45)
-}
-
 .medium-font {
     font-size: 1.1em;
     /*font-size: medium;*/
 }
+
+.overflow-scroll-y {
+    overflow-y: auto;
+}
+
+.min-100 {
+    min-height: 100%;
+}
+
+.max-100-vh {
+    max-height:85vh;
+}
+
+/*.deck-card-img {*/
+/*    position: fixed;*/
+/*    top: 10px;*/
+/*}*/

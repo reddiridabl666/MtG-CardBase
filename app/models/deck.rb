@@ -4,6 +4,11 @@ class Deck < ApplicationRecord
 
   has_many :cards, class_name: 'CardInDeck', dependent: :delete_all
 
+  validates :name, uniqueness: {
+    scope: :user,
+    message: 'You already have a deck with such name'
+  }
+
   private
 
   def validate_card_instance_num

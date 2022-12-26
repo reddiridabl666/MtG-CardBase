@@ -15,4 +15,15 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :user_authenticated
+
+  protected
+
+  def redirect_if_not_logged_in
+    redirect_to root_path unless current_user.present?
+  end
+
+  def init_deck
+    return @deck = nil if session[:deck_id].blank?
+    @deck ||= Deck.find_by_id(session[:deck_id])
+  end
 end
