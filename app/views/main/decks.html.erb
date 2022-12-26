@@ -1,0 +1,21 @@
+<div class="row mt-5">
+  <div class="list-group row col-6 list-group-horizontal outline ms-1 pe-0">
+    <div class="col-4 list-group-item centered">
+      <span>Deck name</span>
+    </div>
+    <div class="col-3 list-group-item centered">
+      <span>User name</span>
+    </div>
+    <div class="col-2 list-group-item centered">
+      <span>Colors</span>
+    </div>
+    <div class="col-3 list-group-item centered">
+      <span>Format</span>
+    </div>
+  </div>
+</div>
+
+<% @decks.each do |deck| %>
+  <%= render partial: 'decks/deck_entry', locals: { deck: deck } %>
+<% end %>
+

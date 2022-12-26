@@ -4,6 +4,9 @@ class DecksController < ApplicationController
 
   add_flash_types :deck_alert
 
+  def show_deck
+  end
+
   def save_deck
     session[:is_deckbuilding] = false
     @deck&.save

@@ -111,7 +111,8 @@ body {
     max-height:85vh;
 }
 
-/*.deck-card-img {*/
-/*    position: fixed;*/
-/*    top: 10px;*/
-/*}*/
+.deck-card-img {
+    position: absolute;
+    z-index: 1;
+    right: 520px;
+}

@@ -1,5 +1,5 @@
-<div class="row mt-1 deck-card">
-  <div class="list-group row col-10 list-group-horizontal outline p-0 ms-1">
+<div class="row mt-1 deck-card overflow-visible">
+  <div class="list-group deck-card-info row col-10 list-group-horizontal outline p-0 ms-1">
     <div class="list-group-item col-6 p-0 text-center">
       <%= card_in_deck.card_instance.card.name %>
     </div>
@@ -23,8 +23,7 @@
                 data: { turbo_method: :patch} %>
   </div>
 
-  <div class="row deck-card-img hidden">
-    <%= image_tag card_in_deck.card_instance.image.representation(resize_to_limit: [284, 400]), class: 'col-6' %>
+  <div class="deck-card-img col-7 hidden">
+    <%= image_tag card_in_deck.card_instance.image.representation(resize_to_limit: [284, 400]), class: ''%>
   </div>
-
 </div>

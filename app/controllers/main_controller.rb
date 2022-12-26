@@ -3,10 +3,18 @@ class MainController < ApplicationController
   before_action :page, :init_meta_info, only: [:index, :filtered]
   before_action :init_params, only: [:filtered]
   before_action :base_params, only: [:index]
-  before_action :redirect_if_not_logged_in, except: [:index, :filtered]
+  before_action :redirect_if_not_logged_in, only: [:deck_format]
 
   def index
     @cards = CardInstance.filtered(@params).page @page
+  end
+
+  def decks
+    if params[:user_name].blank?
+      @decks = Deck.order(:user_id)
+    else
+      @decks = Deck.joins(:user).where("users.name = ?", params[:user_name])
+    end
   end
 
   def filtered

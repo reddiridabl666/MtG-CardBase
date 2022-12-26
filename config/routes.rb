@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'decks', to: "main#decks"
+  get 'show_deck', to: "decks#show_deck"
 
   get 'logout', to: "session#logout"
   get 'login', to: "session#login"
