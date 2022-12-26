@@ -35,6 +35,7 @@ class DecksController < ApplicationController
     return redirect_back(fallback_location: root_path) unless @deck.present?
 
     card_instance = CardInstance.find_by_uuid(params[:card_uuid])
+    return if card_instance.blank?
 
     if CardInDeck.total_same(@deck, card_instance.card) > @deck.format.max_same - 1 && card_instance.card.supertypes.exclude?('Basic')
       return redirect_back(fallback_location: root_path, deck_alert: "Can't add more than #{@deck.format.max_same} of the same card")
@@ -54,9 +55,8 @@ class DecksController < ApplicationController
   def remove_card
     return redirect_back(fallback_location: root_path) unless @deck.present?
 
-    raise "AAAAAAA" if params[:card_id].blank?
-    card_id = params[:card_id]
-    card_in_deck = @deck.cards.find_by(id: card_id)
+    card_in_deck = @deck.cards.find_by(id: params[:card_id])
+    return if card_in_deck.blank?
 
     if card_in_deck.num - 1 == 0
       card_in_deck.destroy
@@ -65,7 +65,7 @@ class DecksController < ApplicationController
       card_in_deck.save
     end
 
-    render 'decks/refresh_deck'
+    render 'refresh_deck'
   end
 
   private
