@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::Base
+  around_action :switch_locale
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
   def user_authenticated
     return false if session[:current_user_id].nil?
     true
@@ -30,5 +36,12 @@ class ApplicationController < ActionController::Base
   def page(type)
     page = params[:page].present? ? params[:page] : 1
     [type.page.total_pages, page.to_i].min
+  end
+
+  private
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 end

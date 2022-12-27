@@ -24,12 +24,12 @@ class DeckEditorController < ApplicationController
   end
 
   def create_deck
-    return redirect_to root_path, alert: 'Invalid deck format' if Format.find_by_id(params[:deck_format]).blank?
+    return redirect_to root_path, alert: I18n.t('inv-format') if Format.find_by_id(params[:deck_format]).blank?
 
     @deck = Deck.create(name: params[:deck_name], format: Format.find_by_id(params[:deck_format]), user_id: current_user&.id)
 
     unless @deck.valid?
-      return redirect_to root_path, alert: 'You already have a deck with such name'
+      return redirect_to root_path, alert: I18n.t('same-deck')
     end
 
     session[:is_deckbuilding] = true
@@ -45,7 +45,7 @@ class DeckEditorController < ApplicationController
     return if card_instance.blank?
 
     if CardInDeck.total_same(@deck, card_instance.card) > @deck.format.max_same - 1 && card_instance.card.supertypes.exclude?('Basic')
-      return redirect_back(fallback_location: root_path, deck_alert: "Can't add more than #{@deck.format.max_same} of the same card")
+      return redirect_back(fallback_location: root_path, deck_alert: I18n.t('max-same-exceed', max: @deck.format.max_same))
     end
 
     card_in_deck = @deck.cards.find_by(card_instance_id: card_instance.id)

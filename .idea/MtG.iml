@@ -54,6 +54,7 @@
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.0, ruby-3.1.2-p20) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.11.0, ruby-3.1.2-p20) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.8.1, ruby-3.1.2-p20) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v3.1.0, ruby-3.1.2-p20) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.15.5, ruby-3.1.2-p20) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.0.0, ruby-3.1.2-p20) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.12.0, ruby-3.1.2-p20) [gem]" level="application" />
@@ -427,6 +428,12 @@
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="Prints out your Rack middleware stack" fullCommand="middleware" id="middleware" />
+          <RakeTaskImpl id="mtg">
+            <subtasks>
+              <RakeTaskImpl description="parse MTGJson set and fill db with it's data" fullCommand="mtg:add_set[set_name]" id="add_set[set_name]" />
+              <RakeTaskImpl description="" fullCommand="mtg:add_set" id="add_set" />
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl description="Restart app by touching tmp/restart.txt" fullCommand="restart" id="restart" />
           <RakeTaskImpl description="Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions)" fullCommand="secret" id="secret" />
           <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />

@@ -1,0 +1,19 @@
+<% buttons ||= false %>
+
+<%# unless objects.blank? %>
+<footer class="footer fixed-bottom bg-dark row mt-3 d-flex align-items-center">
+  <div class="col-8 ms-5">
+    <%= paginate objects %>
+  </div>
+  <% if buttons %>
+    <div class="col-2 d-flex align-items-center">
+      <%= button_to t('new-deck'), deck_format_path, id: 'new-deck-btn', class: "#{'d-none' if !user_authenticated || user_is_deckbuilding}
+          btn btn-outline-secondary text-light", method: :get, form: {"data-type": "turbo_stream" }%>
+    </div>
+  <% end %>
+  <div class="col-1">
+    <%= link_to("EN", add_locale('en'), class: 'btn btn-outline-primary text-light me-1') %>
+    <%= link_to("RU", add_locale('ru'), class: 'btn btn-outline-primary text-light') %>
+  </div>
+</footer>
+<%# end %>

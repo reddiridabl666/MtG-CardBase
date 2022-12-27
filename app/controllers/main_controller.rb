@@ -5,6 +5,8 @@ class MainController < ApplicationController
   before_action :base_params, only: [:index]
   before_action :redirect_if_not_logged_in, only: [:deck_format]
 
+  layout 'clear'
+
   def index
     @page = page(CardInstance)
     @cards = CardInstance.filtered(@params).page @page

@@ -133,7 +133,7 @@ body {
 
 .view-card-img {
     left: 50vw;
-    top: 35vh;
+    top: 30vh;
 }
 
 .w-30 {
@@ -142,4 +142,13 @@ body {
 
 .w-15{
     width: 15%;
+}
+
+#new-deck-btn {
+    z-index: 1;
+}
+
+#locale-btns {
+    left: 92vw;
+    bottom: 10px;
 }

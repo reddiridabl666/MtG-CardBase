@@ -1,34 +1,64 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  user_name: 'Login'
+  password: 'Password'
+  pass_repeat: 'Password confirmation'
+  submit: 'Submit'
+
+  log_in: 'Log In'
+  sign_up: 'Sign Up'
+  sign_out: 'Sign Out'
+
+  save: 'Save'
+  delete: 'Delete'
+  view: 'View'
+  edit: 'Edit'
+  copy: 'Copy'
+  search: 'Search'
+
+  hello: "Hello"
   http_cdn_jsdelivr_net_npm_keyrune_latest_css_keyru: "http://cdn.jsdelivr.net/npm/keyrune@latest/css/keyrune.css"
+  users: "Users"
+  your: "Your"
+  decks: "Decks"
+  cards: "Cards"
+
+  name: 'Name'
+
+  mtg:
+  type: "Type"
+  cost: "Manacost"
+  p/t: "P / T"
+  expansion: "Expansion"
+  rarity: "Rarity"
+  collapse: "Collapse"
+  expand: "Expand"
+  no-cards: "Sorry, no cards were found!"
+  filters: "Filters"
+  rules: "Rules Text"
+  flavour: "Flavour Text"
+  supertype: "Supertype"
+  subtype: "Subtype"
+  mana-value: "Mana Value"
+  power: "Power"
+  toughness: "Toughness"
+  new-deck: "New Deck"
+  choose-format: "Choose format:"
+  create: "Create"
+  creature: "Creatures"
+  enchantment: "Enchantments"
+  planeswalker: "Planeswalkers"
+  sorcery: "Sorceries"
+  instant: "Instants"
+  artifact: "Artifacts"
+  land: "Lands"
+  same-deck: "You already have a deck with such name"
+  inv-format: "Invalid deck format"
+  max-same-exceed: "Can't add more than %{max} of the same card"
+  count: "Count"
+  colors: "Colors"
+  author: "Author"
+  format: "Format"
+  no-decks: "Sorry, no decks were found!"
+  back: "Back"
+  user: "Users"
+  no-users: "No users were found"

@@ -1,32 +1,32 @@
 <!--<div class="position-fixed">-->
 <div class="row justify-content-center">
-  <button class="btn btn-outline-primary text-dark col-6" id='filter-btn'>Filters</button>
+  <button class="btn btn-outline-primary text-dark col-6" id='filter-btn'><%= t('filters') %></button>
 </div>
 
 <div class="w-100 row hidden"></div>
 
 <%= form_with url: filtered_path, method: :get, class: "mt-3 #{'d-none' unless @show_filters}", id: 'filter-form' do |form| %>
   <div class="row form-group">
-    <%= form.label :name, 'Name', class: "col-3"%>
+    <%= form.label :name, t('name'), class: "col-3"%>
     <div class="col-9">
       <%= form.text_field :name, class: "form-control", value: @params[:name] %>
     </div>
   </div>
   <div class="row mt-2 form-group">
-    <%= form.label :rules, 'Rules Text', class: "col-3"%>
+    <%= form.label :rules, t('rules'), class: "col-3"%>
     <div class="col-9">
       <%= form.text_field :rules, class: "form-control", value: @params[:rules] %>
     </div>
   </div>
   <div class="row mt-2 form-group">
-    <%= form.label :flavour, 'Flavour Text', class: "col-3"%>
+    <%= form.label :flavour, t('flavour'), class: "col-3"%>
     <div class="col-9">
       <%= form.text_field :flavour, class: "form-control", value: @params[:flavour] %>
     </div>
   </div>
 
   <div class="ms-2 gx-4 row mt-2 form-group align-items-center justify-content-center">
-    <%= form.label :set, 'Expansion', class: 'col-3' %>
+    <%= form.label :set, t('expansion'), class: 'col-3' %>
     <div class="col-6">
       <%= form.select :set, @expansions, class: "ms-2 form-select", selected: @params[:set] %>
     </div>
@@ -39,21 +39,21 @@
   </div>
 
   <div class="row form-group mt-3 justify-content-center">
-    <%= form.label :supertypes, 'Supertype', class: 'col-3' %>
+    <%= form.label :supertypes, t('supertype'), class: 'col-3' %>
     <div class="col-5">
       <%= form.select :supertypes, @supertypes, class: "ms-1 form-select", selected: @params[:supertypes] %>
     </div>
   </div>
 
   <div class="row form-group mt-2 justify-content-center">
-    <%= form.label :types, 'Type', class: 'col-3' %>
+    <%= form.label :types, t('type'), class: 'col-3' %>
     <div class="col-5">
       <%= form.select :types, @types, class: "ms-1 form-select", selected: @params[:types] %>
     </div>
   </div>
 
   <div class="row form-group mt-2 justify-content-center">
-    <%= form.label :subtypes, 'Subtype', class: 'col-3' %>
+    <%= form.label :subtypes, t('subtype'), class: 'col-3' %>
     <div class="col-5">
       <%= form.select :subtypes, @subtypes, class: "ms-1 form-select", selected: @params[:subtypes] %>
     </div>
@@ -61,25 +61,25 @@
 
   <div class="row form-group mt-2 justify-content-center">
     <%= form.number_field :cost_ge, in: 0..99, class: 'col-1 p-0 ps-1', value: @params[:cost_ge] %>
-    <span class="text-dark col-5 pe-0 text-center"><= Mana value <=</span>
+    <span class="text-dark col-5 pe-0 text-center"><= <%= t('mana-value') %> <=</span>
     <%= form.number_field :cost_le, in: 0..99,  class: 'col-1 p-0 ps-1 ms-1', value: @params[:cost_le]  %>
   </div>
 
   <div class="row form-group mt-2 justify-content-center">
     <%= form.number_field :power_ge, in: 0..99, class: 'col-1 p-0 ps-1', value: @params[:power_ge] %>
-    <span class="text-dark col-5 text-center"><= Power <=</span>
+    <span class="text-dark col-5 text-center"><= <%= t('power') %> <=</span>
     <%= form.number_field :power_le, in: 0..99, class: 'col-1 p-0 ps-1 ms-1', value: @params[:power_le]  %>
   </div>
 
   <div class="row form-group mt-2 justify-content-center">
     <%= form.number_field :toughness_ge, in: 0..99, class: 'col-1 p-0 ps-1', value: @params[:toughness_ge] %>
-    <span class="text-dark col-5 pe-0 text-center"><= Toughness <=</span>
+    <span class="text-dark col-5 pe-0 text-center"><= <%= t('toughness') %> <=</span>
     <%= form.number_field :toughness_le, in: 0..99, class: 'col-1 p-0 ps-1 ms-1', value: @params[:toughness_le]  %>
   </div>
 
   <div class="row mt-4">
     <div class="col-3"></div>
-    <%= form.submit "Search", class: "btn btn-secondary col-6" %>
+    <%= form.submit t('search'), class: "btn btn-secondary col-6" %>
     <div class="col-3"></div>
   </div>
 <% end %>

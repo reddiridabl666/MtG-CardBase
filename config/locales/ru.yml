@@ -1,0 +1,71 @@
+ru:
+  http_cdn_jsdelivr_net_npm_keyrune_latest_css_keyru: "http://cdn.jsdelivr.net/npm/keyrune@latest/css/keyrune.css"
+
+  user_name: 'Логин'
+  password: 'Пароль'
+  pass_repeat: 'Подтвердите пароль'
+  submit: 'Готово'
+
+  log_in: 'Войти'
+  sign_up: 'Зарегистрироваться'
+  sign_out: 'Выйти'
+
+  save: 'Сохранить'
+  delete: 'Удалить'
+  view: 'Подробнее'
+  edit: 'Редактировать'
+  copy: 'Копировать'
+  search: 'Поиск'
+
+  views:
+    pagination:
+      first: "« Начало"
+      truncate: "…"
+      last: "Конец »"
+      next: "Вперёд ›"
+      previous: "‹ Назад"
+
+  users: "Пользователи"
+  your: "Твои"
+  decks: "Колоды"
+  cards: "Карты"
+  hello: "Привет"
+
+  name: 'Название'
+  type: "Тип"
+  cost: "Стоимость"
+  p/t: "С / В"
+  expansion: "Выпуск"
+  rarity: "Редкость"
+  collapse: "Скрыть"
+  expand: "Показать"
+  no-cards: "Карт по такому запросу не найдено"
+  filters: "Фильтры"
+  rules: "Текст правил"
+  flavour: "Художественный текст"
+  supertype: "Надтип"
+  subtype: "Подтип"
+  mana-value: "Мановая Ценность"
+  power: "Сила"
+  toughness: "Выносливость"
+  new-deck: "Новая колода"
+  choose-format: "Выберите формат:"
+  create: "Создать"
+  creature: "Существа"
+  enchantment: "Чары"
+  planeswalker: "Плэйнсволкеры"
+  sorcery: "Волшебства"
+  instant: "Мгновенные заклинания"
+  artifact: "Артефакты"
+  land: "Земли"
+  same-deck: "У вас уже есть колода с таким названием"
+  inv-format: "Неправильный формат колоды"
+  max-same-exceed: "Нельзя добавить больше %{max} одинаковых карт"
+  count: "Кол-во"
+  colors: "Цвета"
+  author: "Автор"
+  format: "Формат"
+  no-decks: "Колод по вашему запросу не найдено"
+  back: "Назад"
+  user: "Пользователи"
+  no-users: "Пользователей по вашему запросу не найдено"

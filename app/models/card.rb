@@ -21,6 +21,10 @@ class Card < ApplicationRecord
     message: 'Stats can only be a 1-2 decimal number, X, or *'
   }
 
+  def self.all_types
+    %w[Creature Enchantment Planeswalker Sorcery Instant Artifact Land]
+  end
+
   def type
     "#{supertypes.present? ? "#{supertypes.join(' ')} " : ''}#{types.join(' ')}#{subtypes.present? ? " - #{subtypes.join(' ')}" : ''}"
   end

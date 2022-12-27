@@ -2,11 +2,15 @@
 
 <div class="row">
   <div class="col-8">
-    <h1 class="mt-4 row">Users</h1>
+    <h1 class="mt-4 row"><%= t('users') %></h1>
 
-    <div id="users">
+    <div id="users mt-3">
       <% @users.each do |user| %>
         <%= render user %>
+      <% end %>
+
+      <% if @users.blank? %>
+        <p class="h5"><%= t('no-users') %></p>
       <% end %>
     </div>
 
@@ -22,11 +26,11 @@
           <div class="col-8">
             <%= form.text_field :user_name, class: 'form-control', value: params[:user_name]  %>
           </div>
-          <%= form.submit 'Search', class: 'btn btn-outline-primary col-4' %>
+          <%= form.submit t('search'), class: 'btn btn-outline-primary col-4' %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= render partial: "footer", locals: { objects: @users } %>
+<%= render partial: "footer_pagination", locals: { objects: @users } %>

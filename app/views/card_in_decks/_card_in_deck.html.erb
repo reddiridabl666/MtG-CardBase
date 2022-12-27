@@ -1,11 +1,11 @@
 <div class="list-group deck-card-info row col-10 list-group-horizontal outline p-0 ms-1">
-  <div class="list-group-item col-6 p-0 text-center">
+  <div class="list-group-item col-5 p-0 text-center">
     <%= card_in_deck.card_instance.card.name %>
   </div>
   <div class="list-group-item col-3 p-0 text-center">
     <%= render partial: 'manacost', locals: { card: card_in_deck.card_instance.card, size: ApplicationHelper::MTG_SYMBOL_SIZE_MIN } %>
   </div>
-  <div class="list-group-item col-1 p-0 text-center">
+  <div class="list-group-item col-2 p-0 text-center">
     <%= render partial: 'set_symbol', locals: { card: card_in_deck.card_instance, size: 1 } %>
   </div>
   <div class="list-group-item col-2 p-0 text-center">

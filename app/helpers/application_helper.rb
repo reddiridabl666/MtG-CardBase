@@ -26,4 +26,8 @@ module ApplicationHelper
   def checked?(key)
     @params[key].present? ? !@params[key].to_i.zero? : false
   end
+
+  def add_locale(locale)
+    url_for(params.clone.permit!.merge(locale: locale, only_path: true))
+  end
 end

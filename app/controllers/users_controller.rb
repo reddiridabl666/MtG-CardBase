@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :allow_only_admin, only: %i[ edit update destroy ]
 
+  layout 'clear', only: [:index]
+
   # GET /users or /users.json
   def index
     @page = page(User)

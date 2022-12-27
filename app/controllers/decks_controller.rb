@@ -2,6 +2,8 @@ class DecksController < ApplicationController
   before_action :init_deck, only: [:edit]
   before_action :redirect_if_no_deck, :redirect_if_not_logged_in, except: [:decks]
 
+  layout 'clear', only: [:decks]
+
   def decks
     @page = page(Deck)
     @decks = Deck.by_user(params[:user_name]).page @page
