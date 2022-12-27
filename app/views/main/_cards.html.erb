@@ -1,11 +1,17 @@
-<div class="col-7 mb-5 me-0 ps-5 overflow-clip">
-  <div class="cards-heading mb-5 w-100">
-    <%= render partial: "card_header" %>
-  </div>
+<div class="col-7 mb-5 me-0 ps-5">
+  <% if cards.present? %>
+    <div class="cards-heading mb-5 w-100">
+      <%= render partial: "card_header" %>
+    </div>
 
-  <div class="mt-5 card-entries w-100">
-    <% cards.each do |card| %>
-      <%= render card %>
-    <% end %>
-  </div>
+    <div class="mt-5 card-entries w-100">
+      <% cards.each do |card| %>
+        <%= render card %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="h4 mt-5">
+      Sorry, no cards were found!
+    </div>
+  <% end %>
 </div>

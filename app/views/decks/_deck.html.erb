@@ -1,0 +1,50 @@
+<div class="row align-items-center mt-5">
+  <p class="col-2 h4 bold"><%= deck.name %></p>
+  <p class="col-2 h6">Format: <%= deck.format.name %></p>
+</div>
+
+<div class="row mt-2">
+  <% if current_user&.id == deck.user.id %>
+    <%= link_to 'Edit', edit_deck_path(deck_id: deck.id), class: 'btn btn-outline-primary col-1 ms-2' %>
+  <% end %>
+
+  <%= link_to 'Copy', copy_deck_path(deck_id: deck.id), class: 'btn btn-outline-primary col-1 ms-2', data: {turbo_method: :post} %>
+
+  <% if current_user&.id == deck.user.id %>
+    <%= link_to 'Delete', delete_deck_path(deck_id: deck.id), class: "col-1 btn btn-outline-danger ms-2", id: "delete-deck-btn",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+  <% end %>
+</div>
+
+<div class="col-6 ms-3">
+  <% %w[Creature Enchantment Planeswalker Sorcery Instant Artifact Land].each do |type| %>
+    <% cards = deck.cards.all %>
+    <% filtered = cards.filter { |card| card.card_instance.card.types.include? type }.sort_by { |card| card.card_instance.card.mana_value } %>
+
+    <% unless filtered.empty? %>
+      <h6 class="mt-3 bold"><%= type.pluralize(2) %></h6>
+      <div class="ms-2"></div>
+      <%= render partial: 'deck_editor/deck_header' %>
+      <div class="cards">
+        <% filtered.each do |card| %>
+          <%= render partial: 'card_in_decks/card_in_deck_view', locals: { card: card } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+    for (let card of document.getElementsByClassName('deck-card')) {
+        let img = card.getElementsByClassName('deck-card-img')[0];
+        // let info = card.getElementsByClassName('deck-card-info')[0];
+
+        card.addEventListener('mouseenter', () => {
+            img.classList.remove('d-none')
+        });
+
+        card.addEventListener('mouseleave', () => {
+            img.classList.add('d-none')
+        });
+    }
+</script>

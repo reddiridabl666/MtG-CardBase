@@ -1,7 +1,9 @@
+<% size ||= [284, 400] %>
+
 <div id="<%= dom_id card_instance %>" class="row my-2 align-items-center">
   <div class="col-4 me-2">
     <% if card_instance.image.representable? %>
-      <%= image_tag card_instance.image.representation(resize_to_limit: [284, 400]) %>
+      <%= image_tag card_instance.image.representation(resize_to_limit: size) %>
     <% else %>
       <%= link_to rails_blob_path(card_instance.image) %>
     <% end %>

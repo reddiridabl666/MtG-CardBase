@@ -20,10 +20,10 @@
 
     <% unless filtered.empty? %>
       <h6 class="mt-3 bold"><%= type.pluralize(2) %></h6>
-      <%= render partial: 'decks/deck_header' %>
+      <%= render partial: 'deck_editor/deck_header' %>
       <div class="cards">
         <% filtered.each do |card| %>
-          <%= render card %>
+          <%= render partial: 'card_in_decks/card_in_editor', locals: { card: card } %>
         <% end %>
       </div>
     <% end %>
@@ -31,7 +31,7 @@
 
   <div class="row mt-3 justify-content-center">
     <%= form.submit 'Save', class: "col-3 btn btn-outline-success" %>
-    <%= link_to 'Delete', delete_deck_path, class: "col-3 btn btn-outline-danger ms-2", id: "delete-deck-btn",
+    <%= link_to 'Delete', delete_current_deck_path, class: "col-3 btn btn-outline-danger ms-2", id: "delete-deck-btn",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
   </div>
 <% end %>
@@ -54,14 +54,14 @@
 
   for (let card of document.getElementsByClassName('deck-card')) {
       let img = card.getElementsByClassName('deck-card-img')[0];
-      let info = card.getElementsByClassName('deck-card-info')[0];
+      // let info = card.getElementsByClassName('deck-card-info')[0];
 
-      info.addEventListener('mouseenter', () => {
-          img.classList.add('shown')
+      card.addEventListener('mouseenter', () => {
+          img.classList.remove('d-none')
       });
 
-      info.addEventListener('mouseleave', () => {
-          img.classList.remove('shown')
+      card.addEventListener('mouseleave', () => {
+          img.classList.add('d-none')
       });
   }
 </script>

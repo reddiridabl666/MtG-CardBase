@@ -26,4 +26,9 @@ class ApplicationController < ActionController::Base
     return @deck = nil if session[:deck_id].blank?
     @deck ||= Deck.find_by_id(session[:deck_id])
   end
+
+  def page(type)
+    page = params[:page].present? ? params[:page] : 1
+    [type.page.total_pages, page.to_i].min
+  end
 end

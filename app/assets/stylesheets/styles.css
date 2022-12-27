@@ -55,7 +55,7 @@ a {
 }
 
 body {
-    padding-bottom: 50px;
+    padding-bottom: 60px;
     padding-top: 60px;
 }
 
@@ -73,10 +73,9 @@ body {
 }
 
 .hidden {
-    transition: all 1.3s;
+    transition: opacity 1.3s;
     opacity: 0;
     height: 0;
-    overflow: hidden;
 }
 
 .shown {
@@ -99,20 +98,48 @@ body {
     /*font-size: medium;*/
 }
 
-.overflow-scroll-y {
+.overflow-auto-y {
     overflow-y: auto;
+}
+
+.overflow-visible-x {
+    overflow-x: visible;
+}
+
+.overflow-hidden-x {
+    overflow-x: hidden;
 }
 
 .min-100 {
     min-height: 100%;
 }
 
-.max-100-vh {
-    max-height:85vh;
+.max-height-to-fit {
+    max-height: 83%;
 }
 
 .deck-card-img {
-    position: absolute;
+    position: fixed;
     z-index: 1;
-    right: 520px;
+}
+
+.editor-card-img {
+    width: 280px;
+    height: 400px;
+
+    left: 50vw;
+    top: 35vh;
+}
+
+.view-card-img {
+    left: 50vw;
+    top: 35vh;
+}
+
+.w-30 {
+    width: 30vw;
+}
+
+.w-15{
+    width: 15%;
 }

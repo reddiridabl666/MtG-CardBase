@@ -1,0 +1,3 @@
+<%= turbo_stream.update "deck" do %>
+  <%= render partial: 'deck_editor/deck_editor', locals: {deck: @deck} unless @deck.blank? %>
+<% end %>

@@ -1,9 +1,11 @@
 <!--<div class="position-fixed">-->
 <div class="row justify-content-center">
-  <button class="col-6 btn btn-outline-primary text-dark" id='filter-btn'>Filters</button>
+  <button class="btn btn-outline-primary text-dark col-6" id='filter-btn'>Filters</button>
 </div>
 
-<%= form_with url: filtered_path, method: :get, class: "mt-3 hidden #{'shown' if @show_filters}", id: 'filter-form' do |form| %>
+<div class="w-100 row hidden"></div>
+
+<%= form_with url: filtered_path, method: :get, class: "mt-3 #{'d-none' unless @show_filters}", id: 'filter-form' do |form| %>
   <div class="row form-group">
     <%= form.label :name, 'Name', class: "col-3"%>
     <div class="col-9">

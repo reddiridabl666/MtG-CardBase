@@ -18,8 +18,27 @@ class Deck < ApplicationRecord
       next if card_mc.blank?
       card_mc.chars.each { |char| @colors += "{#{char}}" if vars.include?(char) && @colors.exclude?(char) }
     end
-    puts 'Colors:', @colors
+    @colors = '{C}' if @colors.blank?
     @colors
+  end
+
+  def self.by_user(name)
+    if name.blank?
+      Deck.order(:user_id)
+    else
+      Deck.joins(:user).where("users.name = ?", name)
+    end
+  end
+
+  def self.copy(deck, user=nil)
+    copied = Deck.create(name: deck.name + ' copy', format_id: deck.format_id,
+                         user_id: user.blank? ? deck.user_id : user.id)
+
+    deck.cards.each do |card|
+      CardInDeck.create(deck_id: copied.id, card_instance_id: card.card_instance_id, num: card.num)
+    end
+
+    copied
   end
 
   private

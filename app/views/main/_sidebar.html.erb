@@ -1,7 +1,7 @@
 <% @deck ||= nil %>
 
-<div class="col-4 mt-5 ms-0 pe-4 d-flex flex-column">
-  <div class="menu position-fixed p-3 max-100-vh overflow-visible">
+<div class="col-4 mt-5 ms-0">
+  <div class="menu ps-3 max-height-to-fit position-fixed w-30 overflow-hidden-x">
     <div class="text-center">
       <%= render partial: 'flash', locals: { types: %w[error alert] } %>
     </div>
@@ -9,7 +9,7 @@
     <%= render partial: 'menu' %>
 
     <div id="deck" class="mt-4 row small">
-      <%= render partial: 'decks/deck_editor', locals: {deck: @deck} unless @deck.blank? %>
+      <%= render partial: 'deck_editor/deck_editor', locals: {deck: @deck} unless @deck.blank? %>
     </div>
   </div>
 </div>

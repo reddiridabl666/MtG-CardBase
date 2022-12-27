@@ -1,0 +1,31 @@
+<% if @decks.present? %>
+  <div class="row mt-5">
+    <div class="list-group row col-6 list-group-horizontal outline ms-1 pe-0">
+      <div class="col-4 list-group-item centered">
+        <span>Deck name</span>
+      </div>
+      <div class="col-3 list-group-item centered">
+        <span>User name</span>
+      </div>
+      <div class="col-2 list-group-item centered">
+        <span>Colors</span>
+      </div>
+      <div class="col-3 list-group-item centered">
+        <span>Format</span>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row mt-5">
+    <div class="h4 col-3">
+      Sorry, no decks were found!
+    </div>
+    <%= link_to 'Back', 'javascript:history.back()', class: 'btn btn-outline-primary col-1' %>
+  </div>
+<% end %>
+
+<% @decks.each do |deck| %>
+  <%= render partial: 'decks/deck_entry', locals: { deck: deck } %>
+<% end %>
+
+<%= render partial: "footer", locals: { objects: @decks } %>

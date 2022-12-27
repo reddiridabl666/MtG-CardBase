@@ -1,0 +1,7 @@
+<div class="row mt-1 deck-card">
+  <%= render card %>
+
+  <div class="deck-card-img view-card-img col-7 d-none">
+    <%= render partial: 'card_instances/card_extended', locals: { card_instance: card.card_instance, size: [320, 480] } %>
+  </div>
+</div>

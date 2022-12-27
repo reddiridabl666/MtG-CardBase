@@ -1,23 +1,17 @@
 class MainController < ApplicationController
   before_action :init_deck
-  before_action :page, :init_meta_info, only: [:index, :filtered]
+  before_action :init_meta_info, only: [:index, :filtered]
   before_action :init_params, only: [:filtered]
   before_action :base_params, only: [:index]
   before_action :redirect_if_not_logged_in, only: [:deck_format]
 
   def index
+    @page = page(CardInstance)
     @cards = CardInstance.filtered(@params).page @page
   end
 
-  def decks
-    if params[:user_name].blank?
-      @decks = Deck.order(:user_id)
-    else
-      @decks = Deck.joins(:user).where("users.name = ?", params[:user_name])
-    end
-  end
-
   def filtered
+    @page = page(CardInstance)
     @show_filters = true
     @cards = CardInstance.filtered(@params).page @page
     render 'index'
@@ -26,11 +20,6 @@ class MainController < ApplicationController
   def deck_format; end
 
   private
-
-  def page
-    @page = params[:page].present? ? params[:page] : 1
-    @page = [CardInstance.page.total_pages, @page.to_i].min
-  end
 
   def init_meta_info
     @expansions = [''] + Expansion.all

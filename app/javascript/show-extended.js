@@ -2,19 +2,11 @@ function dropdown_buttons() {
     return document.getElementsByClassName('dropdown-btn');
 }
 
-function card_buttons() {
-    return document.getElementsByClassName('card-buttons');
-}
-
-function dropdown_button_containers() {
-    return document.getElementsByClassName('dropdown-btn-container');
-}
-
 for (let btn of dropdown_buttons()) {
     let card = cardByBtn(btn);
 
     btn.addEventListener('click', () => {
-        if (!card.classList.contains('shown')) {
+        if (isHidden(card)) {
             showCard(card, btn);
         } else {
             hideCard(card, btn);
@@ -27,17 +19,21 @@ function showCard(card, btn) {
     show(card);
 }
 
+function isHidden(obj) {
+    return obj.classList.contains('d-none')
+}
+
 function hideCard(card, btn) {
     btn.classList.remove('rotated');
     hide(card)
 }
 
 function show(obj) {
-    obj.classList.add('shown');
+    obj.classList.remove('d-none');
 }
 
 function hide(obj) {
-    obj.classList.remove('shown');
+    obj.classList.add('d-none');
 }
 
 function cardByBtn(btn) {
@@ -60,10 +56,10 @@ document.getElementById('expand-btn').addEventListener('click', () => {
 
 document.getElementById('filter-btn').addEventListener('click', () => {
     const filter_form = document.getElementById('filter-form');
-    if (!filter_form.classList.contains('shown')) {
-        show(filter_form);
+    if (isHidden(filter_form)) {
+        filter_form.classList.remove('d-none')
     } else {
-        hide(filter_form);
+        filter_form.classList.add('d-none')
     }
 });
 

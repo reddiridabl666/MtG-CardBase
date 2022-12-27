@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @page = page(User)
+    @users = User.by_name(params[:user_name]).page @page
   end
 
   # GET /users/1 or /users/1.json

@@ -85,6 +85,8 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.11.0)
     execjs (2.8.1)
+    faker (3.1.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -240,6 +242,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2.2)
   debug
+  faker
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

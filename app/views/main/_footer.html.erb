@@ -1,9 +1,0 @@
-<footer class="footer fixed-bottom bg-dark row mt-3 d-flex align-items-center">
-  <div class="col-10 ms-5">
-    <%= paginate objects %>
-  </div>
-  <div class="col-1 d-flex align-items-center">
-    <%= button_to 'New Deck', deck_format_path, id: 'new-deck-btn', class: "#{'d-none' if !user_authenticated || user_is_deckbuilding}
-        btn btn-outline-secondary text-light", method: :get, form: {"data-type": "turbo_stream" }%>
-  </div>
-</footer>
