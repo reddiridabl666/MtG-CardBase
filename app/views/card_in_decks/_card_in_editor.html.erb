@@ -6,7 +6,7 @@
                 data: { turbo_method: :patch} %>
   </div>
   <div class="col-1 px-0">
-    <%= link_to image_tag('minus.svg', size: '20x20'), remove_card_path(params: {card_id: card.id}), class: "entry-btn",
+    <%= link_to image_tag('minus.svg', size: '20x20'), remove_card_path(params: {card_id: card.id}), class: "entry-btn remove-btn",
                 data: { turbo_method: :patch} %>
   </div>
 

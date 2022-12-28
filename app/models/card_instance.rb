@@ -9,8 +9,6 @@ class CardInstance < ApplicationRecord
   validates :card_id, :expansion_id, :rarity, :uuid, presence: true
   validates :uuid, uniqueness: true
 
-  # default_scope { order(card: :asc) }
-
   def expansion_symbol(size=1)
     expansion.symbol(rarity, size)
   end

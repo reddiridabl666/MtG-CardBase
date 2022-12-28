@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   before_action :init_deck, only: [:edit]
-  before_action :redirect_if_no_deck, :redirect_if_not_logged_in, except: [:decks]
+  before_action :redirect_if_no_deck, except: [:decks]
+  before_action :redirect_if_not_logged_in, except: [:decks, :show]
 
   layout 'clear', only: [:decks]
 

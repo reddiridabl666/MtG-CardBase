@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  scope "/:locale" do
+  scope "(:locale)", locale: /en|ru/ do
+    root "main#index"
+
     get 'decks', to: "decks#decks"
     get 'show_deck', to: "decks#show"
     get 'edit_deck', to: "decks#edit"
@@ -24,6 +26,5 @@ Rails.application.routes.draw do
     get 'deck_format', to: "main#deck_format", format: 'turbo_stream'
 
     resources :users
-    root "main#index"
   end
 end

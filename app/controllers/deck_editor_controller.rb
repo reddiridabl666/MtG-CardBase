@@ -48,13 +48,7 @@ class DeckEditorController < ApplicationController
       return redirect_back(fallback_location: root_path, deck_alert: I18n.t('max-same-exceed', max: @deck.format.max_same))
     end
 
-    card_in_deck = @deck.cards.find_by(card_instance_id: card_instance.id)
-    if card_in_deck.present?
-      card_in_deck.num += 1
-      card_in_deck.save
-    else
-      CardInDeck.create(deck_id: @deck.id, card_instance_id: card_instance.id)
-    end
+    @deck.add_card(card_instance)
 
     render 'refresh_deck'
   end
@@ -65,12 +59,7 @@ class DeckEditorController < ApplicationController
     card_in_deck = @deck.cards.find_by(id: params[:card_id])
     return if card_in_deck.blank?
 
-    if card_in_deck.num - 1 == 0
-      card_in_deck.destroy
-    else
-      card_in_deck.num -= 1
-      card_in_deck.save
-    end
+    CardInDeck.remove(card_in_deck)
 
     render 'refresh_deck'
   end

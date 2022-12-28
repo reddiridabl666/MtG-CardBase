@@ -16,7 +16,7 @@ class Card < ApplicationRecord
   }
 
   validates :power, :toughness, format: {
-    with: /(\d{1,2}|X|\*)/,
+    with: /\A(\d{1,2}|X|\*)\z/,
     allow_nil: true,
     message: 'Stats can only be a 1-2 decimal number, X, or *'
   }

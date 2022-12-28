@@ -1,17 +1,19 @@
 <% if @decks.present? %>
-  <div class="row mt-5">
-    <div class="list-group row col-6 list-group-horizontal outline ms-1 pe-0">
-      <div class="col-4 list-group-item centered">
-        <span><%= t('name') %></span>
-      </div>
-      <div class="col-3 list-group-item centered">
-        <span><%= t('author') %></span>
-      </div>
-      <div class="col-2 list-group-item centered">
-        <span><%= t('colors') %></span>
-      </div>
-      <div class="col-3 list-group-item centered">
-        <span><%= t('format') %></span>
+  <div class="row">
+    <div class="row mt-5">
+      <div class="list-group row col-6 list-group-horizontal outline ms-1 pe-0">
+        <div class="col-4 list-group-item centered">
+          <span><%= t('name') %></span>
+        </div>
+        <div class="col-3 list-group-item centered">
+          <span><%= t('author') %></span>
+        </div>
+        <div class="col-2 list-group-item centered">
+          <span><%= t('colors') %></span>
+        </div>
+        <div class="col-3 list-group-item centered">
+          <span><%= t('format') %></span>
+        </div>
       </div>
     </div>
   </div>
@@ -24,8 +26,10 @@
   </div>
 <% end %>
 
-<% @decks.each do |deck| %>
-  <%= render partial: 'decks/deck_entry', locals: { deck: deck } %>
-<% end %>
+<div id="decks" class="row mb-3">
+  <% @decks.each do |deck| %>
+    <%= render partial: 'decks/deck_entry', locals: { deck: deck } %>
+  <% end %>
+</div>
 
 <%= render partial: "footer_pagination", locals: { objects: @decks } %>

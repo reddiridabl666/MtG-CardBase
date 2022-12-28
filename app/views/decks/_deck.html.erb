@@ -8,7 +8,9 @@
     <%= link_to t('edit'), edit_deck_path(deck_id: deck.id), class: 'btn btn-outline-primary col-1 ms-2' %>
   <% end %>
 
-  <%= link_to t('copy'), copy_deck_path(deck_id: deck.id), class: 'btn btn-outline-primary col-1 ms-2', data: {turbo_method: :post} %>
+  <% if current_user.present? %>
+    <%= link_to t('copy'), copy_deck_path(deck_id: deck.id), class: 'btn btn-outline-primary col-1 ms-2', data: {turbo_method: :post} %>
+  <% end %>
 
   <% if current_user&.id == deck.user.id %>
     <%= link_to t('delete'), delete_deck_path(deck_id: deck.id), class: "col-1 btn btn-outline-danger ms-2", id: "delete-deck-btn",
@@ -16,7 +18,7 @@
   <% end %>
 </div>
 
-<div class="col-6 ms-3">
+<div class="col-6 ms-3 mb-3">
   <% Card.all_types.each do |type| %>
     <% cards = deck.cards.all %>
     <% filtered = cards.filter { |card| card.card_instance.card.types.include? type }.sort_by { |card| card.card_instance.card.mana_value } %>

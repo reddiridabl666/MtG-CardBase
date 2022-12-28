@@ -9,17 +9,43 @@ class Deck < ApplicationRecord
     message: 'You already have a deck with such name'
   }
 
-  def colors
-    @colors = ''
-    vars = %w[W U B R G]
-    cards.each do |card|
-      card_mc = card.card_instance.card.manacost
-      puts card_mc
-      next if card_mc.blank?
-      card_mc.chars.each { |char| @colors += "{#{char}}" if vars.include?(char) && @colors.exclude?(char) }
+  def add_card(card_instance)
+    card_in_deck = cards.find_by(card_instance_id: card_instance.id)
+    if card_in_deck.present?
+      card_in_deck.num += 1
+      card_in_deck.save
+    else
+      card = CardInDeck.create(deck_id: id, card_instance_id: card_instance.id)
+      Deck.refresh_colors(self, card) if card.valid?
+      save
     end
-    @colors = '{C}' if @colors.blank?
-    @colors
+  end
+
+  def self.refresh_colors(deck, card_in_deck)
+    %w[W U B R G].each do |color|
+      if card_in_deck.card_instance.card.manacost&.include?(color)
+        deck.colors += "{#{color}}" if deck.colors.exclude?(color)
+      end
+    end
+
+    deck.save
+  end
+
+  def self.remove_colors(deck, card_in_deck)
+    %w[W U B R G].each do |color|
+      if card_in_deck.card_instance.card.manacost&.include?(color)
+        contains = false
+
+        deck.cards.filter { |card| card != card_in_deck }.each do |card|
+          contains = card.card_instance.card.manacost&.include? color
+          break if contains
+        end
+
+        deck.colors.gsub!("{#{color}}", '') unless contains
+      end
+    end
+
+    deck.save
   end
 
   def self.by_user(name)

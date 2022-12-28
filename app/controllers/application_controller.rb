@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def redirect_if_not_logged_in
-    redirect_to root_path unless current_user.present?
+    redirect_back(fallback_location: root_path) unless current_user.present?
   end
 
   def init_deck

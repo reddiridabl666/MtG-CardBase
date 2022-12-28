@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :redirect_if_not_logged_in, except: [:create, :new]
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :allow_only_admin, only: %i[ edit update destroy ]
 
