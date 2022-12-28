@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     post 'authorize', to: "session#authorize"
 
     get 'filtered', to: "main#filtered"
+    get 'deck_format', to: "main#deck_format", format: 'turbo_stream'
+    patch 'toggle_filters', to: "main#toggle_filters"
 
     post 'create_deck', to: "deck_editor#create_deck"
     patch 'save_deck', to: "deck_editor#save_deck"
@@ -22,8 +24,6 @@ Rails.application.routes.draw do
 
     patch 'add_card', to: "deck_editor#add_card"
     patch 'remove_card', to: "deck_editor#remove_card"
-
-    get 'deck_format', to: "main#deck_format", format: 'turbo_stream'
 
     resources :users
   end

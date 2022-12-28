@@ -32,7 +32,7 @@
   <div class="row mt-3 justify-content-center">
     <%= form.submit t('save'), class: "col-3 btn btn-outline-success" %>
     <%= link_to t('delete'), delete_current_deck_path, class: "col-3 btn btn-outline-danger ms-2", id: "delete-deck-btn",
-                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+                data: {turbo_method: :delete, turbo_confirm: t('sure?')} %>
   </div>
 <% end %>
 
@@ -54,7 +54,6 @@
 
   for (let card of document.getElementsByClassName('deck-card')) {
       let img = card.getElementsByClassName('deck-card-img')[0];
-      // let info = card.getElementsByClassName('deck-card-info')[0];
 
       card.addEventListener('mouseenter', () => {
           img.classList.remove('d-none')

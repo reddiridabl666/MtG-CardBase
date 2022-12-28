@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# sessions controller
 class SessionController < ApplicationController
   def login; end
 
@@ -17,6 +20,6 @@ class SessionController < ApplicationController
   private
 
   def redirect_to_login
-    redirect_to login_path, flash: { alert: 'Wrong login or password' }
+    redirect_to login_path, flash: { alert: I18n.t('invalid_creds') }
   end
 end

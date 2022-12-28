@@ -9,7 +9,7 @@ RSpec.describe Deck, type: :model do
 
     clone = Deck.copy(deck)
 
-    expect(clone.name).to eq deck.name + ' copy'
+    expect(clone.name).to eq deck.name + " #{I18n.t('copied')}"
 
     original = deck.cards.order(:card_instance_id)
     clone.cards.order(:card_instance_id).each_with_index do |cloned, id|
@@ -19,6 +19,7 @@ RSpec.describe Deck, type: :model do
 
     expect(clone.user_id).to eq deck.user_id
     expect(clone.format_id).to eq deck.format_id
+    expect(clone.colors).to eq deck.colors
   end
 
   it 'can add cards to itself' do

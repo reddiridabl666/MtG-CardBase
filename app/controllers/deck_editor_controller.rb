@@ -1,14 +1,19 @@
+# frozen_string_literal: true
+
+# controller for deck editing
 class DeckEditorController < ApplicationController
   before_action :init_deck
   before_action :redirect_if_not_logged_in
 
   add_flash_types :deck_alert
 
-  def show_deck
-  end
+  def show_deck; end
 
   def save_deck
     session[:is_deckbuilding] = false
+
+    @deck&.name = params[:deck_name]
+    @deck&.format = Format.find_by_id(params[:deck_format])
     @deck&.save
     session[:deck_id] = nil
 
@@ -26,14 +31,12 @@ class DeckEditorController < ApplicationController
   def create_deck
     return redirect_to root_path, alert: I18n.t('inv-format') if Format.find_by_id(params[:deck_format]).blank?
 
-    @deck = Deck.create(name: params[:deck_name], format: Format.find_by_id(params[:deck_format]), user_id: current_user&.id)
+    @deck = Deck.create(name: params[:deck_name], format: Format.find_by_id(params[:deck_format]),
+                        user_id: current_user&.id)
 
-    unless @deck.valid?
-      return redirect_to root_path, alert: I18n.t('same-deck')
-    end
+    return redirect_to root_path, alert: I18n.t('same-deck') unless @deck.valid?
 
-    session[:is_deckbuilding] = true
-    session[:deck_id] = @deck.id
+    start_deckbuilding
 
     render 'refresh_deck'
   end
@@ -44,8 +47,10 @@ class DeckEditorController < ApplicationController
     card_instance = CardInstance.find_by_uuid(params[:card_uuid])
     return if card_instance.blank?
 
-    if CardInDeck.total_same(@deck, card_instance.card) > @deck.format.max_same - 1 && card_instance.card.supertypes.exclude?('Basic')
-      return redirect_back(fallback_location: root_path, deck_alert: I18n.t('max-same-exceed', max: @deck.format.max_same))
+    if CardInDeck.total_same(@deck, card_instance.card) > @deck.format.max_same - 1 &&
+       card_instance.card.supertypes.exclude?('Basic')
+      return redirect_back(fallback_location: root_path,
+                           deck_alert: I18n.t('max-same-exceed', max: @deck.format.max_same))
     end
 
     @deck.add_card(card_instance)
@@ -62,5 +67,12 @@ class DeckEditorController < ApplicationController
     CardInDeck.remove(card_in_deck)
 
     render 'refresh_deck'
+  end
+
+  private
+
+  def start_deckbuilding
+    session[:is_deckbuilding] = true
+    session[:deck_id] = @deck.id
   end
 end

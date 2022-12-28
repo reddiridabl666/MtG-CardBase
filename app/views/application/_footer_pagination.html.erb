@@ -1,6 +1,5 @@
 <% buttons ||= false %>
 
-<%# unless objects.blank? %>
 <footer class="footer fixed-bottom bg-dark row mt-3 d-flex align-items-center">
   <div class="col-8 ms-5">
     <%= paginate objects %>
@@ -16,4 +15,3 @@
     <%= link_to("RU", add_locale('ru'), class: 'btn btn-outline-primary text-light') %>
   </div>
 </footer>
-<%# end %>

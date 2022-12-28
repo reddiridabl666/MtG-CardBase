@@ -55,22 +55,26 @@ RSpec.describe "DeckBuilding", type: :system do
 
     expect(CardInDeck.count).to eq initial_card_count + 2
 
-    click_on I18n.t('edit', wait: 10)
+    sleep(1.5)
+    click_on I18n.t('edit')
 
     all('.remove-btn').each { |btn| btn&.click }
     all('.add-btn')[1].click
 
     click_on I18n.t('save')
 
+    sleep(1)
     expect(CardInDeck.count).to eq initial_card_count + 1
 
-    click_on I18n.t('copy', wait: 10)
-    click_on I18n.t('edit', wait: 10)
+    click_on I18n.t('copy')
+
+    sleep(1)
+    click_on I18n.t('edit')
 
     expect(Deck.count).to eq initial_deck_count + 2
 
     page.accept_alert 'Are you sure?' do
-      click_on I18n.t('delete', wait: 10)
+      click_on I18n.t('delete')
     end
 
     sleep(1)

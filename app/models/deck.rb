@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# deck model
 class Deck < ApplicationRecord
   belongs_to :format
   belongs_to :user
@@ -23,8 +26,8 @@ class Deck < ApplicationRecord
 
   def self.refresh_colors(deck, card_in_deck)
     %w[W U B R G].each do |color|
-      if card_in_deck.card_instance.card.manacost&.include?(color)
-        deck.colors += "{#{color}}" if deck.colors.exclude?(color)
+      if card_in_deck.card_instance.card.manacost&.include?(color) && deck.colors.exclude?(color)
+        deck.colors += "{#{color}}"
       end
     end
 
@@ -33,16 +36,9 @@ class Deck < ApplicationRecord
 
   def self.remove_colors(deck, card_in_deck)
     %w[W U B R G].each do |color|
-      if card_in_deck.card_instance.card.manacost&.include?(color)
-        contains = false
+      next unless card_in_deck.card_instance.card.manacost&.include?(color)
 
-        deck.cards.filter { |card| card != card_in_deck }.each do |card|
-          contains = card.card_instance.card.manacost&.include? color
-          break if contains
-        end
-
-        deck.colors.gsub!("{#{color}}", '') unless contains
-      end
+      deck.colors.gsub!("{#{color}}", '') unless deck.color_without?(card_in_deck, color)
     end
 
     deck.save
@@ -52,19 +48,39 @@ class Deck < ApplicationRecord
     if name.blank?
       Deck.order(:user_id)
     else
-      Deck.joins(:user).where("users.name = ?", name)
+      Deck.joins(:user).where('users.name = ?', name)
     end
   end
 
-  def self.copy(deck, user=nil)
-    copied = Deck.create(name: deck.name + ' copy', format_id: deck.format_id,
-                         user_id: user.blank? ? deck.user_id : user.id)
+  def self.copy(deck, user = nil)
+    user_id = user.blank? ? deck.user_id : user.id
+
+    copied = Deck.create(name: deck.get_copied_name(user_id), format_id: deck.format_id,
+                         user_id:, colors: deck.colors)
 
     deck.cards.each do |card|
       CardInDeck.create(deck_id: copied.id, card_instance_id: card.card_instance_id, num: card.num)
     end
 
     copied
+  end
+
+  def color_without?(card_in_deck, color)
+    contains = false
+
+    cards.filter { |card| card != card_in_deck }.each do |card|
+      contains = card.card_instance.card.manacost&.include? color
+      break if contains
+    end
+
+    contains
+  end
+
+  def get_copied_name(user_id)
+    count = Deck.where('name like :deck_name and user_id = :user_id',
+                       user_id:,
+                       deck_name: "%#{Deck.sanitize_sql_like(name)} #{I18n.t('copied')}%").count
+    "#{name} #{I18n.t('copied')} #{count unless count.zero?}".chomp ' '
   end
 
   private

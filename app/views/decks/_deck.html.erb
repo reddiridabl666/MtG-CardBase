@@ -14,7 +14,7 @@
 
   <% if current_user&.id == deck.user.id %>
     <%= link_to t('delete'), delete_deck_path(deck_id: deck.id), class: "col-1 btn btn-outline-danger ms-2", id: "delete-deck-btn",
-                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+                data: {turbo_method: :delete, turbo_confirm: t('sure?')} %>
   <% end %>
 </div>
 

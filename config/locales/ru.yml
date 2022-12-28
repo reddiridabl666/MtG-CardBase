@@ -7,7 +7,7 @@ ru:
   submit: 'Готово'
 
   log_in: 'Войти'
-  sign_up: 'Зарегистрироваться'
+  sign_up: 'Регистрация'
   sign_out: 'Выйти'
 
   save: 'Сохранить'
@@ -24,6 +24,14 @@ ru:
       last: "Конец »"
       next: "Вперёд ›"
       previous: "‹ Назад"
+
+  activerecord:
+    models:
+      user: "пользователь"
+    attributes:
+      name: "Логин"
+      password: 'пароль'
+      password_confirmation: 'подтверждение пароля'
 
   users: "Пользователи"
   your: "Твои"
@@ -69,3 +77,6 @@ ru:
   back: "Назад"
   user: "Пользователи"
   no-users: "Пользователей по вашему запросу не найдено"
+  sure?: "Вы уверены?"
+  copied: "копия"
+  invalid_creds: "Неправильный логин или пароль"

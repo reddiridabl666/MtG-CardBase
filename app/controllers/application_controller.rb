@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# base controller
 class ApplicationController < ActionController::Base
   around_action :switch_locale
 
@@ -7,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   def user_authenticated
     return false if session[:current_user_id].nil?
+
     true
   end
 
@@ -25,11 +29,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def redirect_if_not_logged_in
-    redirect_back(fallback_location: root_path) unless current_user.present?
+    redirect_to login_path unless current_user.present?
   end
 
   def init_deck
     return @deck = nil if session[:deck_id].blank?
+
     @deck ||= Deck.find_by_id(session[:deck_id])
   end
 

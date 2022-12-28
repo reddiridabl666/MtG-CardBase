@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
+# main controller
 class MainController < ApplicationController
-  before_action :init_deck
-  before_action :init_meta_info, only: [:index, :filtered]
+  before_action :init_deck, :show_filters_init
+
+  before_action :init_meta_info, only: %i[index filtered]
   before_action :init_params, only: [:filtered]
   before_action :base_params, only: [:index]
   before_action :redirect_if_not_logged_in, only: [:deck_format]
@@ -14,9 +18,13 @@ class MainController < ApplicationController
 
   def filtered
     @page = page(CardInstance)
-    @show_filters = true
     @cards = CardInstance.filtered(@params).page @page
     render 'index'
+  end
+
+  def toggle_filters
+    session[:show_filters] = !@show_filters
+    head :ok
   end
 
   def deck_format; end
@@ -28,6 +36,10 @@ class MainController < ApplicationController
     @supertypes = [''] + CardType.where(type_scope: :super).to_a
     @types = [''] + CardType.where(type_scope: :normal).to_a
     @subtypes = [''] + CardType.where(type_scope: :sub).to_a
+  end
+
+  def show_filters_init
+    @show_filters = session[:show_filters]
   end
 
   def init_params

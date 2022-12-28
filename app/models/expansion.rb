@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# expansion model
 class Expansion < ApplicationRecord
   has_many :card_instances
 
@@ -8,8 +11,8 @@ class Expansion < ApplicationRecord
 
   default_scope { order(code: :asc) }
 
-  def symbol(rarity, size=1)
-    "ss ss-#{code.downcase} ss-#{rarity}#{size == 1 ? "" : " ss-#{size}x"}"
+  def symbol(rarity, size = 1)
+    "ss ss-#{code.downcase} ss-#{rarity}#{size == 1 ? '' : " ss-#{size}x"}"
   end
 
   def to_s

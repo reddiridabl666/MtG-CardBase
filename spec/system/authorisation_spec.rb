@@ -35,10 +35,10 @@ RSpec.describe "Authorisation", type: :system do
 
   it "doesn't allow to visit certain pages when unauthorized" do
     visit users_path
-    expect(page).to have_current_path root_path
+    expect(page).to have_current_path login_path
 
     visit deck_format_path
-    expect(page).to have_current_path root_path
+    expect(page).to have_current_path login_path
 
     visit edit_deck_path
     expect(page).to have_current_path decks_path

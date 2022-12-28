@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# card instance model
 class CardInstance < ApplicationRecord
   paginates_per 20
 
@@ -9,7 +12,7 @@ class CardInstance < ApplicationRecord
   validates :card_id, :expansion_id, :rarity, :uuid, presence: true
   validates :uuid, uniqueness: true
 
-  def expansion_symbol(size=1)
+  def expansion_symbol(size = 1)
     expansion.symbol(rarity, size)
   end
 
@@ -26,7 +29,7 @@ class CardInstance < ApplicationRecord
     end
   end
 
-  def expansion_symbol_common(size=1)
+  def expansion_symbol_common(size = 1)
     expansion.symbol('common', size)
   end
 
@@ -40,6 +43,6 @@ class CardInstance < ApplicationRecord
     cards = Card.filtered(params)
     instances = CardInstance.where(card_id: cards)
 
-    self.filter_by_expansion(instances, params[:set])
+    filter_by_expansion(instances, params[:set])
   end
 end
