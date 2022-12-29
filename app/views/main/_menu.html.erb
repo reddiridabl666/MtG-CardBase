@@ -1,10 +1,6 @@
-<!--<div class="position-fixed">-->
 <div class="row justify-content-center">
-<!--  <button class="btn btn-outline-primary text-dark col-6" id='filter-btn'><%#= t('filters') %></button>-->
   <%= link_to t('filters'), toggle_filters_path, class: "btn btn-outline-primary text-dark col-6", id: 'filter-btn', data: { "turbo-method": :patch } %>
 </div>
-
-<!--<div class="w-100 row hidden"></div>-->
 
 <%= form_with url: filtered_path, method: :get, class: "mt-3 #{'d-none' unless @show_filters}", id: 'filter-form' do |form| %>
   <div class="row form-group">
@@ -84,5 +80,3 @@
     <div class="col-3"></div>
   </div>
 <% end %>
-
-<!--</div>-->

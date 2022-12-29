@@ -6,7 +6,6 @@
 .footer {
     background-color: rgb(0, 0, 0);
     height: 60px;
-    /*z-index: 1;*/
 }
 
 .bold {
@@ -60,7 +59,6 @@ body {
 }
 
 .entry-extended {
-    /*visibility: hidden;*/
     transition: opacity 0.5s;
 }
 
@@ -95,7 +93,6 @@ body {
 
 .medium-font {
     font-size: 1.1em;
-    /*font-size: medium;*/
 }
 
 .overflow-auto-y {

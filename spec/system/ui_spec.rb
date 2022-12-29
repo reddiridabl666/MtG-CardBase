@@ -28,15 +28,5 @@ RSpec.describe "UI", type: :system do
 
       expect(page).to have_content I18n.t('no-cards')
     end
-
-    it 'allows browsing through decks and cards' do
-      visit root_path
-
-      click_on '3'
-      expect(page).to have_current_path root_path
-
-      click_on I18n.t('decks')
-      expect(page).to have_current_path decks_path
-    end
   end
 end
